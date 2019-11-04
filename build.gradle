@@ -1,0 +1,38 @@
+plugins {
+    id "java"
+    id "org.springframework.boot" version "2.2.0.RELEASE"
+    id "io.spring.dependency-management" version "1.0.8.RELEASE"
+}
+
+group = "io.github.malczuuu"
+version = "0.0.1-SNAPSHOT"
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io/" }
+}
+
+dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude(group: "org.junit.vintage", module: "junit-vintage-engine")
+    }
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+
+    runtimeOnly("org.mariadb.jdbc:mariadb-java-client:2.5.1")
+
+    implementation("com.auth0:java-jwt:3.8.0")
+    implementation("io.github.malczuuu.problem4j:problem4j-spring-web:2.0.0-rc.5")
+
+    testRuntimeOnly("com.h2database:h2:1.4.199")
+}
+
+test {
+    useJUnitPlatform()
+}

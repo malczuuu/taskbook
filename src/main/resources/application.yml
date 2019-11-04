@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  main:
+    banner-mode: off
+  datasource:
+    url: jdbc:mariadb://127.0.0.1:3306/taskbook
+    username: taskbook
+    password: taskbook
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      use-new-id-generator-mappings: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  jackson:
+    date-format: com.fasterxml.jackson.databind.util.StdDateFormat
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+    default-property-inclusion: NON_NULL
+    property-naming-strategy: SNAKE_CASE
+
+taskbook:
+  jwt:
+    secret: "0000000000"
+    lifetime: 864000
+
+logging:
+  level:
+    io.github.malczuuu: debug
