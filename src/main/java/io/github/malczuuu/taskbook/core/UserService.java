@@ -38,6 +38,10 @@ public class UserService {
     return userRepository.findAll(PageRequest.of(page, size)).map(this::toUserModel);
   }
 
+  public Page<UserModel> findAll(String query, int page, int size) {
+    return userRepository.findAllByQuery(query,PageRequest.of(page,size)).map(this::toUserModel);
+  }
+
   private UserModel toUserModel(UserEntity user) {
     return new UserModel(
         user.getUid(),

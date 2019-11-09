@@ -42,6 +42,21 @@ public class UserController {
     return userService.findAll(pagination.getPage(), pagination.getSize());
   }
 
+  @GetMapping(
+      produces = "application/json",
+      params = {"query"})
+  public Page<UserModel> findAllByQuery(
+      @RequestParam(name = "query") String query,
+      @RequestParam(name = "page", defaultValue = "0")
+          @Pattern(regexp = "^\\d+$", message = "must be a number")
+          String page,
+      @RequestParam(name = "size", defaultValue = "20")
+          @Pattern(regexp = "^\\d+$", message = "must be a number")
+          String size) {
+    Pagination pagination = Pagination.process(page, size);
+    return userService.findAll(query, pagination.getPage(), pagination.getSize());
+  }
+
   @PostMapping(produces = "application/json", consumes = "application/json")
   public UserModel create(@RequestBody @Valid NewUserModel requestBody) {
     return userService.create(requestBody);
