@@ -1,4 +1,4 @@
-package io.github.malczuuu.taskbook.core;
+package io.github.malczuuu.taskbook.core.impl;
 
 import io.github.malczuuu.problem4j.core.Problem;
 import io.github.malczuuu.taskbook.core.entity.BoardEntity;
@@ -12,6 +12,7 @@ import io.github.malczuuu.taskbook.core.exception.UserDoesNotExistException;
 import io.github.malczuuu.taskbook.core.repository.BoardRepository;
 import io.github.malczuuu.taskbook.core.repository.IssueRepository;
 import io.github.malczuuu.taskbook.core.repository.UserRepository;
+import io.github.malczuuu.taskbook.core.service.IssueService;
 import io.github.malczuuu.taskbook.model.IssueModel;
 import io.github.malczuuu.taskbook.model.IssueUpdateModel;
 import io.github.malczuuu.taskbook.model.NewIssueModel;
@@ -24,14 +25,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class IssueService {
+public class IssueServiceImpl implements IssueService {
 
   private final BoardRepository boardRepository;
   private final IssueRepository issueRepository;
   private final UserRepository userRepository;
   private final Clock clock;
 
-  public IssueService(
+  public IssueServiceImpl(
       BoardRepository boardRepository,
       IssueRepository issueRepository,
       UserRepository userRepository,
@@ -42,6 +43,7 @@ public class IssueService {
     this.clock = clock;
   }
 
+  @Override
   public Page<IssueModel> findAll(String board, int page, int size) {
     BoardEntity boardEntity = fetchBoard(board);
     return issueRepository
@@ -75,6 +77,7 @@ public class IssueService {
         user.getLastName());
   }
 
+  @Override
   public Page<IssueModel> findAllFilterByTitle(String board, String title, int page, int size) {
     BoardEntity boardEntity = fetchBoard(board);
     return issueRepository
@@ -82,6 +85,7 @@ public class IssueService {
         .map(this::toIssueModel);
   }
 
+  @Override
   public IssueModel findByUid(String board, String uid) {
     return toIssueModel(fetchIssue(fetchBoard(board), uid));
   }
@@ -95,6 +99,7 @@ public class IssueService {
     return issue;
   }
 
+  @Override
   @Transactional
   public IssueModel create(String board, NewIssueModel issue) {
     BoardEntity boardEntity = fetchBoard(board);
@@ -116,6 +121,7 @@ public class IssueService {
     return userRepository.findByUid(uid).orElseThrow(UserDoesNotExistException::new);
   }
 
+  @Override
   @Transactional
   public IssueModel updateByUid(String board, String uid, IssueUpdateModel issue) {
     BoardEntity boardEntity = fetchBoard(board);
@@ -134,6 +140,7 @@ public class IssueService {
     return toIssueModel(entity);
   }
 
+  @Override
   @Transactional
   public void deleteByUid(String board, String uid) {
     BoardEntity boardEntity = fetchBoard(board);

@@ -17,9 +17,9 @@ import javax.persistence.UniqueConstraint;
 @Table(
     name = "issues",
     uniqueConstraints = {
-        @UniqueConstraint(
-            name = "unique_uid_within_board",
-            columnNames = {"board_id", "issue_uid"})
+      @UniqueConstraint(
+          name = "unique_uid_within_board",
+          columnNames = {"board_id", "issue_uid"})
     })
 public class IssueEntity {
 
@@ -58,8 +58,7 @@ public class IssueEntity {
   @Column(name = "issue_archived_time")
   private Instant archivedTime;
 
-  public IssueEntity() {
-  }
+  public IssueEntity() {}
 
   public IssueEntity(
       Long id,

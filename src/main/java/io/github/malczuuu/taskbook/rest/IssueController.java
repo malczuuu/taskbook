@@ -1,6 +1,6 @@
 package io.github.malczuuu.taskbook.rest;
 
-import io.github.malczuuu.taskbook.core.IssueService;
+import io.github.malczuuu.taskbook.core.service.IssueService;
 import io.github.malczuuu.taskbook.model.IssueModel;
 import io.github.malczuuu.taskbook.model.IssueUpdateModel;
 import io.github.malczuuu.taskbook.model.NewIssueModel;

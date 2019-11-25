@@ -1,6 +1,6 @@
 package io.github.malczuuu.taskbook.security;
 
-import io.github.malczuuu.taskbook.core.UserService;
+import io.github.malczuuu.taskbook.core.service.UserService;
 import io.github.malczuuu.taskbook.model.NewUserModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

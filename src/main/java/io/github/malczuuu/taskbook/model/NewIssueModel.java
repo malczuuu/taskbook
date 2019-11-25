@@ -2,7 +2,6 @@ package io.github.malczuuu.taskbook.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public final class NewIssueModel {

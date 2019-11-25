@@ -1,11 +1,12 @@
-package io.github.malczuuu.taskbook.core;
+package io.github.malczuuu.taskbook.core.impl;
 
 import io.github.malczuuu.taskbook.core.entity.IssueEntity;
-import io.github.malczuuu.taskbook.core.repository.IssueRepository;
 import io.github.malczuuu.taskbook.core.entity.Role;
 import io.github.malczuuu.taskbook.core.entity.UserEntity;
-import io.github.malczuuu.taskbook.core.repository.UserRepository;
 import io.github.malczuuu.taskbook.core.exception.UserNotFoundException;
+import io.github.malczuuu.taskbook.core.repository.IssueRepository;
+import io.github.malczuuu.taskbook.core.repository.UserRepository;
+import io.github.malczuuu.taskbook.core.service.UserService;
 import io.github.malczuuu.taskbook.model.NewUserModel;
 import io.github.malczuuu.taskbook.model.UserModel;
 import io.github.malczuuu.taskbook.model.UserUpdateModel;
@@ -19,13 +20,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class UserService {
+public class UserServiceImpl implements UserService {
 
   private final UserRepository userRepository;
   private final IssueRepository issueRepository;
   private final PasswordEncoder passwordEncoder;
 
-  public UserService(
+  public UserServiceImpl(
       UserRepository userRepository,
       IssueRepository issueRepository,
       PasswordEncoder passwordEncoder) {
@@ -34,12 +35,14 @@ public class UserService {
     this.passwordEncoder = passwordEncoder;
   }
 
+  @Override
   public Page<UserModel> findAll(int page, int size) {
     return userRepository.findAll(PageRequest.of(page, size)).map(this::toUserModel);
   }
 
+  @Override
   public Page<UserModel> findAll(String query, int page, int size) {
-    return userRepository.findAllByQuery(query,PageRequest.of(page,size)).map(this::toUserModel);
+    return userRepository.findAllByQuery(query, PageRequest.of(page, size)).map(this::toUserModel);
   }
 
   private UserModel toUserModel(UserEntity user) {
@@ -51,6 +54,7 @@ public class UserService {
         user.getLastName());
   }
 
+  @Override
   public UserModel findByUid(String uid) {
     return toUserModel(fetchUser(uid));
   }
@@ -59,6 +63,7 @@ public class UserService {
     return userRepository.findByUid(uid).orElseThrow(UserNotFoundException::new);
   }
 
+  @Override
   public UserModel create(NewUserModel user) {
     String uid = UUID.randomUUID().toString().replace("-", "");
     String password = passwordEncoder.encode(user.getPassword());
@@ -74,6 +79,7 @@ public class UserService {
     return toUserModel(entity);
   }
 
+  @Override
   @Transactional
   public UserModel updateByUid(String uid, UserUpdateModel user) {
     UserEntity entity = fetchUser(uid);
@@ -81,6 +87,7 @@ public class UserService {
     return toUserModel(entity);
   }
 
+  @Override
   @Transactional
   public void deleteByUid(String uid) {
     UserEntity entity = fetchUser(uid);
@@ -103,6 +110,7 @@ public class UserService {
     issues.forEach(issue -> issue.setAssignee(null));
   }
 
+  @Override
   public boolean anyExists() {
     return userRepository.count() > 0;
   }

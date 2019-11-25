@@ -1,6 +1,6 @@
 package io.github.malczuuu.taskbook.rest;
 
-import io.github.malczuuu.taskbook.core.UserService;
+import io.github.malczuuu.taskbook.core.service.UserService;
 import io.github.malczuuu.taskbook.model.NewUserModel;
 import io.github.malczuuu.taskbook.model.UserModel;
 import io.github.malczuuu.taskbook.model.UserUpdateModel;

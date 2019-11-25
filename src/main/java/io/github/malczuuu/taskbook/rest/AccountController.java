@@ -1,6 +1,6 @@
 package io.github.malczuuu.taskbook.rest;
 
-import io.github.malczuuu.taskbook.core.AccountService;
+import io.github.malczuuu.taskbook.core.service.AccountService;
 import io.github.malczuuu.taskbook.model.AccountModel;
 import io.github.malczuuu.taskbook.model.AccountUpdateModel;
 import io.github.malczuuu.taskbook.model.PasswordUpdateModel;

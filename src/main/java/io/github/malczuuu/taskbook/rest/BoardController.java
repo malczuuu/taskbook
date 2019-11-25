@@ -1,6 +1,6 @@
 package io.github.malczuuu.taskbook.rest;
 
-import io.github.malczuuu.taskbook.core.BoardService;
+import io.github.malczuuu.taskbook.core.service.BoardService;
 import io.github.malczuuu.taskbook.model.BoardModel;
 import io.github.malczuuu.taskbook.model.BoardUpdateModel;
 import io.github.malczuuu.taskbook.rest.support.Pagination;

@@ -1,10 +1,11 @@
-package io.github.malczuuu.taskbook.core;
+package io.github.malczuuu.taskbook.core.impl;
 
 import io.github.malczuuu.problem4j.core.Problem;
 import io.github.malczuuu.taskbook.core.entity.BoardEntity;
 import io.github.malczuuu.taskbook.core.exception.BoardGoneException;
 import io.github.malczuuu.taskbook.core.exception.BoardNotFoundException;
 import io.github.malczuuu.taskbook.core.repository.BoardRepository;
+import io.github.malczuuu.taskbook.core.service.BoardService;
 import io.github.malczuuu.taskbook.model.BoardModel;
 import io.github.malczuuu.taskbook.model.BoardUpdateModel;
 import java.time.Clock;
@@ -15,16 +16,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class BoardService {
+public class BoardServiceImpl implements BoardService {
 
   private final BoardRepository boardRepository;
   private final Clock clock;
 
-  public BoardService(BoardRepository boardRepository, Clock clock) {
+  public BoardServiceImpl(BoardRepository boardRepository, Clock clock) {
     this.boardRepository = boardRepository;
     this.clock = clock;
   }
 
+  @Override
   public Page<BoardModel> findAll(int page, int size) {
     return boardRepository
         .findAllByArchivedTimeNull(PageRequest.of(page, size))
@@ -35,10 +37,12 @@ public class BoardService {
     return new BoardModel(board.getUid(), board.getName(), board.getDescription());
   }
 
+  @Override
   public BoardModel findByUid(String uid) {
     return toBoardModel(fetchByUid(uid));
   }
 
+  @Override
   public Page<BoardModel> findAllFilterByName(String name, int page, int size) {
     return boardRepository
         .findAllByNameAndArchivedTimeNull(name, PageRequest.of(page, size))
@@ -53,6 +57,7 @@ public class BoardService {
     return board;
   }
 
+  @Override
   public BoardModel create(BoardModel board) {
     BoardEntity entity =
         new BoardEntity(
@@ -63,6 +68,7 @@ public class BoardService {
     return toBoardModel(entity);
   }
 
+  @Override
   @Transactional
   public BoardModel updateByUid(String uid, BoardUpdateModel board) {
     BoardEntity entity = fetchByUid(uid);
@@ -73,6 +79,7 @@ public class BoardService {
     return toBoardModel(entity);
   }
 
+  @Override
   @Transactional
   public void deleteByUid(String uid) {
     BoardEntity entity = fetchByUid(uid);

@@ -1,9 +1,10 @@
-package io.github.malczuuu.taskbook.core;
+package io.github.malczuuu.taskbook.core.impl;
 
 import io.github.malczuuu.taskbook.core.entity.UserEntity;
-import io.github.malczuuu.taskbook.core.repository.UserRepository;
 import io.github.malczuuu.taskbook.core.exception.InvalidPasswordException;
 import io.github.malczuuu.taskbook.core.exception.UserDoesNotExistException;
+import io.github.malczuuu.taskbook.core.repository.UserRepository;
+import io.github.malczuuu.taskbook.core.service.AccountService;
 import io.github.malczuuu.taskbook.model.AccountModel;
 import io.github.malczuuu.taskbook.model.AccountUpdateModel;
 import io.github.malczuuu.taskbook.model.PasswordUpdateModel;
@@ -12,16 +13,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class AccountService {
+public class AccountServiceImpl implements AccountService {
 
   private final UserRepository userRepository;
   private final PasswordEncoder passwordEncoder;
 
-  public AccountService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+  public AccountServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
     this.userRepository = userRepository;
     this.passwordEncoder = passwordEncoder;
   }
 
+  @Override
   public AccountModel getAccount(String username) {
     return toAccountModel(fetchUser(username));
   }
@@ -39,6 +41,7 @@ public class AccountService {
         user.getLastName());
   }
 
+  @Override
   @Transactional
   public AccountModel updateAccount(String username, AccountUpdateModel update) {
     UserEntity user = fetchUser(username);
@@ -48,6 +51,7 @@ public class AccountService {
     return toAccountModel(user);
   }
 
+  @Override
   @Transactional
   public void updatePassword(String username, PasswordUpdateModel password) {
     UserEntity user = fetchUser(username);

@@ -13,9 +13,9 @@ import javax.persistence.UniqueConstraint;
 @Table(
     name = "boards",
     uniqueConstraints = {
-        @UniqueConstraint(
-            name = "unique_board_uid",
-            columnNames = {"board_uid"})
+      @UniqueConstraint(
+          name = "unique_board_uid",
+          columnNames = {"board_uid"})
     })
 public class BoardEntity {
 
@@ -36,7 +36,7 @@ public class BoardEntity {
   @Column(name = "board_archived_time")
   private Instant archivedTime;
 
-  public BoardEntity() { }
+  public BoardEntity() {}
 
   public BoardEntity(String uid, String name, String description) {
     this(null, uid, name, description);
