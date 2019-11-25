@@ -44,6 +44,23 @@ public class IssueController {
     return issueService.findAll(board, pagination.getPage(), pagination.getSize());
   }
 
+  @GetMapping(
+      produces = "application/json",
+      params = {"title"})
+  public Page<IssueModel> findAllFilterByTitle(
+      @PathVariable("board") String board,
+      @RequestParam("title") String title,
+      @RequestParam(name = "page", defaultValue = "0")
+          @Pattern(regexp = "^\\d+$", message = "must be a number")
+          String page,
+      @RequestParam(name = "size", defaultValue = "20")
+          @Pattern(regexp = "^\\d+$", message = "must be a number")
+          String size) {
+    Pagination pagination = Pagination.process(page, size);
+    return issueService.findAllFilterByTitle(
+        board, title, pagination.getPage(), pagination.getSize());
+  }
+
   @PostMapping(produces = "application/json", consumes = "application/json")
   @ResponseStatus(HttpStatus.CREATED)
   public IssueModel create(

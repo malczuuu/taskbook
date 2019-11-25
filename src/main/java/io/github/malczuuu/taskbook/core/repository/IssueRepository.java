@@ -12,6 +12,9 @@ public interface IssueRepository extends Repository<IssueEntity, Long> {
 
   Page<IssueEntity> findAllByBoardAndArchivedTimeNull(BoardEntity board, Pageable pageable);
 
+  Page<IssueEntity> findAllByBoardAndTitleAndArchivedTimeNull(
+      BoardEntity board, String title, Pageable pageable);
+
   Optional<IssueEntity> findByBoardAndUid(BoardEntity board, String uid);
 
   IssueEntity save(IssueEntity issue);

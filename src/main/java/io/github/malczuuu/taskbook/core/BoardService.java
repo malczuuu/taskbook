@@ -2,9 +2,9 @@ package io.github.malczuuu.taskbook.core;
 
 import io.github.malczuuu.problem4j.core.Problem;
 import io.github.malczuuu.taskbook.core.entity.BoardEntity;
-import io.github.malczuuu.taskbook.core.repository.BoardRepository;
 import io.github.malczuuu.taskbook.core.exception.BoardGoneException;
 import io.github.malczuuu.taskbook.core.exception.BoardNotFoundException;
+import io.github.malczuuu.taskbook.core.repository.BoardRepository;
 import io.github.malczuuu.taskbook.model.BoardModel;
 import io.github.malczuuu.taskbook.model.BoardUpdateModel;
 import java.time.Clock;
@@ -37,6 +37,12 @@ public class BoardService {
 
   public BoardModel findByUid(String uid) {
     return toBoardModel(fetchByUid(uid));
+  }
+
+  public Page<BoardModel> findAllFilterByName(String name, int page, int size) {
+    return boardRepository
+        .findAllByNameAndArchivedTimeNull(name, PageRequest.of(page, size))
+        .map(this::toBoardModel);
   }
 
   private BoardEntity fetchByUid(String uid) {

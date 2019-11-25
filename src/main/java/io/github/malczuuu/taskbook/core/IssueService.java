@@ -2,16 +2,16 @@ package io.github.malczuuu.taskbook.core;
 
 import io.github.malczuuu.problem4j.core.Problem;
 import io.github.malczuuu.taskbook.core.entity.BoardEntity;
-import io.github.malczuuu.taskbook.core.repository.BoardRepository;
 import io.github.malczuuu.taskbook.core.entity.IssueEntity;
-import io.github.malczuuu.taskbook.core.repository.IssueRepository;
 import io.github.malczuuu.taskbook.core.entity.UserEntity;
-import io.github.malczuuu.taskbook.core.repository.UserRepository;
 import io.github.malczuuu.taskbook.core.exception.BoardGoneException;
 import io.github.malczuuu.taskbook.core.exception.BoardNotFoundException;
 import io.github.malczuuu.taskbook.core.exception.IssueGoneException;
 import io.github.malczuuu.taskbook.core.exception.IssueNotFoundException;
 import io.github.malczuuu.taskbook.core.exception.UserDoesNotExistException;
+import io.github.malczuuu.taskbook.core.repository.BoardRepository;
+import io.github.malczuuu.taskbook.core.repository.IssueRepository;
+import io.github.malczuuu.taskbook.core.repository.UserRepository;
 import io.github.malczuuu.taskbook.model.IssueModel;
 import io.github.malczuuu.taskbook.model.IssueUpdateModel;
 import io.github.malczuuu.taskbook.model.NewIssueModel;
@@ -73,6 +73,13 @@ public class IssueService {
         user.getRole().name().toLowerCase(),
         user.getFirstName(),
         user.getLastName());
+  }
+
+  public Page<IssueModel> findAllFilterByTitle(String board, String title, int page, int size) {
+    BoardEntity boardEntity = fetchBoard(board);
+    return issueRepository
+        .findAllByBoardAndTitleAndArchivedTimeNull(boardEntity, title, PageRequest.of(page, size))
+        .map(this::toIssueModel);
   }
 
   public IssueModel findByUid(String board, String uid) {

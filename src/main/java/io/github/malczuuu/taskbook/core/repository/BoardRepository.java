@@ -10,6 +10,8 @@ public interface BoardRepository extends Repository<BoardEntity, Long> {
 
   Page<BoardEntity> findAllByArchivedTimeNull(Pageable pageable);
 
+  Page<BoardEntity> findAllByNameAndArchivedTimeNull(String name, Pageable pageable);
+
   Optional<BoardEntity> findByUid(String uid);
 
   BoardEntity save(BoardEntity board);

@@ -44,6 +44,21 @@ public class BoardController {
     return boardService.findAll(pagination.getPage(), pagination.getSize());
   }
 
+  @GetMapping(
+      produces = "application/json",
+      params = {"name"})
+  public Page<BoardModel> findAllFilterByName(
+      @RequestParam("name") String name,
+      @RequestParam(name = "page", defaultValue = "0")
+          @Pattern(regexp = "^\\d+$", message = "must be a number")
+          String page,
+      @RequestParam(name = "size", defaultValue = "20")
+          @Pattern(regexp = "^\\d+$", message = "must be a number")
+          String size) {
+    Pagination pagination = Pagination.process(page, size);
+    return boardService.findAllFilterByName(name, pagination.getPage(), pagination.getSize());
+  }
+
   @PostMapping(produces = "application/json", consumes = "application/json")
   @ResponseStatus(HttpStatus.CREATED)
   @PreAuthorize("hasRole('ADMIN')")
