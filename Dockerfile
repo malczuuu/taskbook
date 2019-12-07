@@ -9,7 +9,7 @@ FROM openjdk:8u232-jre-slim
 
 WORKDIR /taskbook
 
-EXPOSE 8080
+EXPOSE 26160
 
 COPY --from=builder /home/gradle/build/libs/*.jar /taskbook/taskbook.jar
 COPY --from=builder /home/gradle/docker-entrypoint.sh /taskbook/taskbook.sh
