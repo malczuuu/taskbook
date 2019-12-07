@@ -13,7 +13,7 @@ public interface UserRepository extends Repository<UserEntity, Long> {
 
   // lower(u.name) like lower(concat('%', ?1,'%'))
   @Query(
-      "select u from UserEntity u where lower(u.firstName) like lower(concat(?1, '%')) or lower(u.lastName) like lower(concat(?1, '%'))")
+      "select u from UserEntity u where lower(u.firstName) like lower(concat(?1, '%')) or lower(u.lastName) like lower(concat(?1, '%')) or lower(u.email) like lower(concat(?1, '%'))")
   Page<UserEntity> findAllByQuery(String query, Pageable pageable);
 
   Optional<UserEntity> findById(Long id);

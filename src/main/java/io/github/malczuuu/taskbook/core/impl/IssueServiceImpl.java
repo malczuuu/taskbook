@@ -133,11 +133,15 @@ public class IssueServiceImpl implements IssueService {
 
     if (issue.getAssignee() == null) {
       entity.setAssignee(null);
-    } else if (!issue.getAssignee().equals(entity.getAssignee().getUid())) {
+    } else if (shouldUpdateAssignee(issue.getAssignee(), entity.getAssignee())) {
       entity.setAssignee(fetchAssignee(issue.getAssignee()));
     }
 
     return toIssueModel(entity);
+  }
+
+  private boolean shouldUpdateAssignee(String newAssigneeUid, UserEntity assignee) {
+    return assignee == null || !newAssigneeUid.equals(assignee.getUid());
   }
 
   @Override
