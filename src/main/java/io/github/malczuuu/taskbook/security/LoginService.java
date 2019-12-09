@@ -1,6 +1,7 @@
 package io.github.malczuuu.taskbook.security;
 
 import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.algorithms.Algorithm;
 import io.github.malczuuu.taskbook.core.entity.UserEntity;
 import io.github.malczuuu.taskbook.core.exception.InvalidEmailException;
@@ -40,13 +41,15 @@ public class LoginService {
     UserEntity user = fetchAndAuthorizeUser(email, password);
 
     Instant now = Instant.now(clock);
-    return new SessionModel(
+    Instant expireDate = now.plusSeconds(jwtProperties.getLifetime());
+    JWTCreator.Builder jwt =
         JWT.create()
             .withSubject(user.getEmail())
             .withIssuer(jwtProperties.getIssuer())
             .withIssuedAt(Date.from(now))
-            .withExpiresAt(Date.from(now.plusSeconds(jwtProperties.getLifetime())))
-            .sign(algorithm));
+            .withExpiresAt(Date.from(expireDate));
+
+    return new SessionModel(jwt.sign(algorithm), expireDate.toString());
   }
 
   private UserEntity fetchAndAuthorizeUser(String email, String password) {

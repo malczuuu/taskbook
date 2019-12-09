@@ -7,16 +7,25 @@ import javax.validation.constraints.NotBlank;
 public final class SessionModel {
 
   private final String token;
+  private final String expireDate;
 
   @JsonCreator
-  public SessionModel(@JsonProperty("token") String token) {
+  public SessionModel(
+      @JsonProperty("token") String token, @JsonProperty("expire_date") String expireDate) {
     this.token = token;
+    this.expireDate = expireDate;
   }
 
   @NotBlank
   @JsonProperty("token")
   public String getToken() {
     return token;
+  }
+
+  @NotBlank
+  @JsonProperty("expire_date")
+  public String getExpireDate() {
+    return expireDate;
   }
 
   @Override
