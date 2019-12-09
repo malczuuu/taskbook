@@ -14,6 +14,7 @@ import io.github.malczuuu.taskbook.core.repository.IssueRepository;
 import io.github.malczuuu.taskbook.core.repository.UserRepository;
 import io.github.malczuuu.taskbook.core.service.IssueService;
 import io.github.malczuuu.taskbook.model.IssueModel;
+import io.github.malczuuu.taskbook.model.IssueRawModel;
 import io.github.malczuuu.taskbook.model.IssueUpdateModel;
 import io.github.malczuuu.taskbook.model.NewIssueModel;
 import io.github.malczuuu.taskbook.model.UserModel;
@@ -150,5 +151,24 @@ public class IssueServiceImpl implements IssueService {
     BoardEntity boardEntity = fetchBoard(board);
     IssueEntity entity = fetchIssue(boardEntity, uid);
     entity.setArchivedTime(Instant.now(clock));
+  }
+
+  @Override
+  public Page<IssueRawModel> findRawByAssignee(String email, int page, int size) {
+    Page<IssueEntity> issues =
+        issueRepository.findAllByAssigneeEmailAndArchivedTimeNull(
+            email, PageRequest.of(page, size));
+    return issues.map(this::toIssueRawModel);
+  }
+
+  private IssueRawModel toIssueRawModel(IssueEntity issue) {
+    return new IssueRawModel(
+        issue.getBoard().getUid(),
+        issue.getBoard().getName(),
+        issue.getUid(),
+        issue.getTitle(),
+        issue.getDetail(),
+        toUserModel(issue.getAssignee()),
+        issue.getStatus().toString());
   }
 }

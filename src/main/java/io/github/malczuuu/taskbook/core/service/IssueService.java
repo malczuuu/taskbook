@@ -1,6 +1,7 @@
 package io.github.malczuuu.taskbook.core.service;
 
 import io.github.malczuuu.taskbook.model.IssueModel;
+import io.github.malczuuu.taskbook.model.IssueRawModel;
 import io.github.malczuuu.taskbook.model.IssueUpdateModel;
 import io.github.malczuuu.taskbook.model.NewIssueModel;
 import org.springframework.data.domain.Page;
@@ -18,4 +19,6 @@ public interface IssueService {
   IssueModel updateByUid(String board, String uid, IssueUpdateModel issue);
 
   void deleteByUid(String board, String uid);
+
+  Page<IssueRawModel> findRawByAssignee(String email, int page, int size);
 }

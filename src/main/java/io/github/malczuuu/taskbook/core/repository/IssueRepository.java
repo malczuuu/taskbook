@@ -24,4 +24,7 @@ public interface IssueRepository extends Repository<IssueEntity, Long> {
   long countByBoardAndArchivedTimeNull(BoardEntity board);
 
   Page<IssueEntity> findAllByAssigneeAndArchivedTimeNull(UserEntity assignee, Pageable pageable);
+
+  Page<IssueEntity> findAllByAssigneeEmailAndArchivedTimeNull(
+      String assigneeEmail, Pageable pageable);
 }
