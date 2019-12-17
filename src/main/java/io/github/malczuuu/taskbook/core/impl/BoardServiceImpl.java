@@ -4,12 +4,15 @@ import io.github.malczuuu.problem4j.core.Problem;
 import io.github.malczuuu.taskbook.core.entity.BoardEntity;
 import io.github.malczuuu.taskbook.core.exception.BoardGoneException;
 import io.github.malczuuu.taskbook.core.exception.BoardNotFoundException;
+import io.github.malczuuu.taskbook.core.exception.BoardUidConflictException;
 import io.github.malczuuu.taskbook.core.repository.BoardRepository;
 import io.github.malczuuu.taskbook.core.service.BoardService;
 import io.github.malczuuu.taskbook.model.BoardModel;
 import io.github.malczuuu.taskbook.model.BoardUpdateModel;
 import java.time.Clock;
 import java.time.Instant;
+import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -63,7 +66,17 @@ public class BoardServiceImpl implements BoardService {
         new BoardEntity(
             board.getUid().toUpperCase(), board.getName().trim(), board.getDescription().trim());
 
-    entity = boardRepository.save(entity);
+    try {
+      entity = boardRepository.save(entity);
+    } catch (DataIntegrityViolationException e) {
+      if (e.getCause() instanceof ConstraintViolationException) {
+        String constraint = ((ConstraintViolationException) e.getCause()).getConstraintName();
+        if ("unique_board_uid".equals(constraint)) {
+          throw new BoardUidConflictException();
+        }
+      }
+      throw e;
+    }
 
     return toBoardModel(entity);
   }
