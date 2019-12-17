@@ -3,6 +3,7 @@ package io.github.malczuuu.taskbook.core.impl;
 import io.github.malczuuu.taskbook.core.entity.IssueEntity;
 import io.github.malczuuu.taskbook.core.entity.Role;
 import io.github.malczuuu.taskbook.core.entity.UserEntity;
+import io.github.malczuuu.taskbook.core.exception.UserEmailConflictException;
 import io.github.malczuuu.taskbook.core.exception.UserNotFoundException;
 import io.github.malczuuu.taskbook.core.repository.IssueRepository;
 import io.github.malczuuu.taskbook.core.repository.UserRepository;
@@ -12,6 +13,8 @@ import io.github.malczuuu.taskbook.model.UserModel;
 import io.github.malczuuu.taskbook.model.UserUpdateModel;
 import java.util.List;
 import java.util.UUID;
+import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -75,7 +78,17 @@ public class UserServiceImpl implements UserService {
             Role.valueOf(user.getRole().toUpperCase()),
             user.getFirstName().trim(),
             user.getLastName().trim());
-    entity = userRepository.save(entity);
+    try {
+      entity = userRepository.save(entity);
+    } catch (DataIntegrityViolationException e) {
+      if (e.getCause() instanceof ConstraintViolationException) {
+        String constraint = ((ConstraintViolationException) e.getCause()).getConstraintName();
+        if ("unique_user_email".equals(constraint)) {
+          throw new UserEmailConflictException();
+        }
+      }
+      throw e;
+    }
     return toUserModel(entity);
   }
 
