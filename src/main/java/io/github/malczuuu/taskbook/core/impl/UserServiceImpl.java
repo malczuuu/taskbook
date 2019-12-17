@@ -3,6 +3,7 @@ package io.github.malczuuu.taskbook.core.impl;
 import io.github.malczuuu.taskbook.core.entity.IssueEntity;
 import io.github.malczuuu.taskbook.core.entity.Role;
 import io.github.malczuuu.taskbook.core.entity.UserEntity;
+import io.github.malczuuu.taskbook.core.exception.SelfDeleteAttemptException;
 import io.github.malczuuu.taskbook.core.exception.UserEmailConflictException;
 import io.github.malczuuu.taskbook.core.exception.UserNotFoundException;
 import io.github.malczuuu.taskbook.core.repository.IssueRepository;
@@ -102,8 +103,11 @@ public class UserServiceImpl implements UserService {
 
   @Override
   @Transactional
-  public void deleteByUid(String uid) {
+  public void deleteByUid(String uid, String email) {
     UserEntity entity = fetchUser(uid);
+    if (entity.getEmail().equals(email)) {
+      throw new SelfDeleteAttemptException();
+    }
     Pageable pageable = PageRequest.of(0, 500);
 
     Page<IssueEntity> issues =

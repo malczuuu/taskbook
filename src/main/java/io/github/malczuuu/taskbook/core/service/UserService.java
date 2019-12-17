@@ -17,7 +17,7 @@ public interface UserService {
 
   UserModel updateByUid(String uid, UserUpdateModel user);
 
-  void deleteByUid(String uid);
+  void deleteByUid(String uid, String email);
 
   boolean anyExists();
 }
