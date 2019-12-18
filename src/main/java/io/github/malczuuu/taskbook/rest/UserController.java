@@ -70,8 +70,10 @@ public class UserController {
 
   @PutMapping(path = "/{uid}", produces = "application/json", consumes = "application/json")
   public UserModel updateByUid(
-      @PathVariable("uid") String uid, @RequestBody @Valid UserUpdateModel requestBody) {
-    return userService.updateByUid(uid, requestBody);
+      @PathVariable("uid") String uid,
+      @RequestBody @Valid UserUpdateModel requestBody,
+      @AuthenticationPrincipal String principal) {
+    return userService.updateByUid(uid, requestBody, principal);
   }
 
   @DeleteMapping(path = "/{uid}")

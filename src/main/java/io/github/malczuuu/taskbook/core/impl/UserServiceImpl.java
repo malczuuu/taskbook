@@ -3,6 +3,7 @@ package io.github.malczuuu.taskbook.core.impl;
 import io.github.malczuuu.taskbook.core.entity.IssueEntity;
 import io.github.malczuuu.taskbook.core.entity.Role;
 import io.github.malczuuu.taskbook.core.entity.UserEntity;
+import io.github.malczuuu.taskbook.core.exception.RoleSelfUpdateAttemptException;
 import io.github.malczuuu.taskbook.core.exception.SelfDeleteAttemptException;
 import io.github.malczuuu.taskbook.core.exception.UserEmailConflictException;
 import io.github.malczuuu.taskbook.core.exception.UserNotFoundException;
@@ -95,8 +96,11 @@ public class UserServiceImpl implements UserService {
 
   @Override
   @Transactional
-  public UserModel updateByUid(String uid, UserUpdateModel user) {
+  public UserModel updateByUid(String uid, UserUpdateModel user, String email) {
     UserEntity entity = fetchUser(uid);
+    if (entity.getEmail().equals(email)) {
+      throw new RoleSelfUpdateAttemptException();
+    }
     entity.setRole(Role.valueOf(user.getRole().toUpperCase()));
     return toUserModel(entity);
   }

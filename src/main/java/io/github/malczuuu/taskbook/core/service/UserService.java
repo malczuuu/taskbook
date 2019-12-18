@@ -15,7 +15,7 @@ public interface UserService {
 
   UserModel create(NewUserModel user);
 
-  UserModel updateByUid(String uid, UserUpdateModel user);
+  UserModel updateByUid(String uid, UserUpdateModel user, String email);
 
   void deleteByUid(String uid, String email);
 
