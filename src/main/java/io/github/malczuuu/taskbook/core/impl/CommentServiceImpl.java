@@ -53,7 +53,7 @@ public class CommentServiceImpl implements CommentService {
     BoardEntity boardEntity = fetchBoard(board);
     IssueEntity issueEntity = fetchIssue(boardEntity, issue);
     return commentRepository
-        .findAllByBoardAndIssue(boardEntity, issueEntity, PageRequest.of(page, size))
+        .findAllByBoardAndIssueOrderByCreatedTimeDesc(boardEntity, issueEntity, PageRequest.of(page, size))
         .map(this::toCommentModel);
   }
 
@@ -80,7 +80,7 @@ public class CommentServiceImpl implements CommentService {
         comment.getContent(),
         toUserModel(comment.getAuthor()),
         comment.getCreatedTime().toString(),
-        comment.getUpdatedTime().toString());
+        comment.getUpdatedTime() != null ? comment.getUpdatedTime().toString() : null);
   }
 
   private UserModel toUserModel(UserEntity user) {

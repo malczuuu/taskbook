@@ -10,7 +10,7 @@ import org.springframework.data.repository.Repository;
 
 public interface CommentRepository extends Repository<CommentEntity, Long> {
 
-  Page<CommentEntity> findAllByBoardAndIssue(
+  Page<CommentEntity> findAllByBoardAndIssueOrderByCreatedTimeDesc(
       BoardEntity board, IssueEntity issue, Pageable pageable);
 
   Optional<CommentEntity> findByBoardAndIssueAndId(BoardEntity board, IssueEntity issue, Long id);
