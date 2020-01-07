@@ -8,6 +8,9 @@ import io.github.malczuuu.taskbook.rest.support.Pagination;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.SliceImpl;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -44,18 +47,14 @@ public class UserController {
   }
 
   @GetMapping(
+      path = "/search",
       produces = "application/json",
       params = {"query"})
-  public Page<UserModel> findAllByQuery(
-      @RequestParam(name = "query") String query,
-      @RequestParam(name = "page", defaultValue = "0")
-          @Pattern(regexp = "^\\d+$", message = "must be a number")
-          String page,
-      @RequestParam(name = "size", defaultValue = "20")
-          @Pattern(regexp = "^\\d+$", message = "must be a number")
-          String size) {
-    Pagination pagination = Pagination.process(page, size);
-    return userService.findAll(query, pagination.getPage(), pagination.getSize());
+  @PreAuthorize("hasRole('USER')")
+  public Slice<UserModel> findAllByQueryWithoutPagination(
+      @RequestParam(name = "query") String query) {
+    Page<UserModel> users = userService.findAll(query, 0, 20);
+    return new SliceImpl<>(users.getContent());
   }
 
   @PostMapping(produces = "application/json", consumes = "application/json")
