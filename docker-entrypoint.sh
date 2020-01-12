@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CMD="java -Dfile.encoding=UTF-8 -Duser.timezone=UTC -XX:+UseG1GC"
+CMD="java -Dfile.encoding=UTF-8 -Duser.timezone=UTC -XX:+UseG1GC -Dspring.profiles.active=production"
 
 if [ -n "$MARIADB_URI" ] ;      then CMD="$CMD -Dspring.datasource.url=$MARIADB_URI" ;           fi
 if [ -n "$MARIADB_USERNAME" ] ; then CMD="$CMD -Dspring.datasource.username=$MARIADB_USERNAME" ; fi
