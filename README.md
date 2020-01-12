@@ -2,7 +2,8 @@
 
 [![Build Status](https://travis-ci.org/malczuuu/taskbook.svg?branch=master)](https://travis-ci.org/malczuuu/taskbook)
 
-Backend service for Taskbook application.
+Backend service for Taskbook application. Checkout also
+[frontend application](https://github.com/malczuuu/taskbook-frontend).
 
 ## Configuration
 
