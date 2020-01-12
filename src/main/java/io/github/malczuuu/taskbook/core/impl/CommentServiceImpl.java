@@ -53,7 +53,7 @@ public class CommentServiceImpl implements CommentService {
     BoardEntity boardEntity = fetchBoard(board);
     IssueEntity issueEntity = fetchIssue(boardEntity, issue);
     return commentRepository
-        .findAllByBoardAndIssueOrderByCreatedTimeDesc(boardEntity, issueEntity, PageRequest.of(page, size))
+        .findAllByIssueOrderByCreatedTimeDesc(issueEntity, PageRequest.of(page, size))
         .map(this::toCommentModel);
   }
 
@@ -96,15 +96,13 @@ public class CommentServiceImpl implements CommentService {
   public CommentModel findByUid(String board, String issue, String uid) {
     BoardEntity boardEntity = fetchBoard(board);
     IssueEntity issueEntity = fetchIssue(boardEntity, issue);
-    CommentEntity commentEntity = fetchComment(boardEntity, issueEntity, uid);
+    CommentEntity commentEntity = fetchComment(issueEntity, uid);
     return toCommentModel(commentEntity);
   }
 
-  private CommentEntity fetchComment(BoardEntity board, IssueEntity issue, String uid) {
+  private CommentEntity fetchComment(IssueEntity issue, String uid) {
     Long id = parseId(uid);
-    return commentRepository
-        .findByBoardAndIssueAndId(board, issue, id)
-        .orElseThrow(CommentNotFoundException::new);
+    return commentRepository.findByIssueAndId(issue, id).orElseThrow(CommentNotFoundException::new);
   }
 
   private Long parseId(String uid) {
@@ -124,8 +122,7 @@ public class CommentServiceImpl implements CommentService {
     UserEntity userEntity = fetchUser(principal);
 
     CommentEntity commentEntity =
-        new CommentEntity(
-            boardEntity, issueEntity, comment.getContent(), userEntity, clock.instant());
+        new CommentEntity(issueEntity, comment.getContent(), userEntity, clock.instant());
     commentEntity = commentRepository.save(commentEntity);
 
     return toCommentModel(commentEntity);

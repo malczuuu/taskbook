@@ -20,10 +20,6 @@ public class CommentEntity {
   private Long id;
 
   @ManyToOne(optional = false)
-  @JoinColumn(name = "board_id", nullable = false, updatable = false)
-  private BoardEntity board;
-
-  @ManyToOne(optional = false)
   @JoinColumn(name = "issue_id", nullable = false, updatable = false)
   private IssueEntity issue;
 
@@ -42,25 +38,18 @@ public class CommentEntity {
 
   public CommentEntity() {}
 
-  public CommentEntity(
-      BoardEntity board,
-      IssueEntity issue,
-      String content,
-      UserEntity author,
-      Instant createdTime) {
-    this(null, board, issue, content, author, createdTime, null);
+  public CommentEntity(IssueEntity issue, String content, UserEntity author, Instant createdTime) {
+    this(null, issue, content, author, createdTime, null);
   }
 
   public CommentEntity(
       Long id,
-      BoardEntity board,
       IssueEntity issue,
       String content,
       UserEntity author,
       Instant createdTime,
       Instant updatedTime) {
     this.id = id;
-    this.board = board;
     this.issue = issue;
     this.content = content;
     this.author = author;
@@ -70,10 +59,6 @@ public class CommentEntity {
 
   public Long getId() {
     return id;
-  }
-
-  public BoardEntity getBoard() {
-    return board;
   }
 
   public IssueEntity getIssue() {
