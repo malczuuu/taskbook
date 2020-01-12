@@ -1,0 +1,47 @@
+version: "3"
+services:
+
+  mariadb:
+    image: mariadb:10.4.6
+    restart: unless-stopped
+    environment:
+      MYSQL_USER: taskbook
+      MYSQL_PASSWORD: taskbook
+      MYSQL_DATABASE: taskbook
+      MYSQL_ROOT_PASSWORD: root
+    healthcheck:
+      test: "/usr/bin/mysql --user=taskbook --password=taskbook --execute \"SHOW DATABASES;\""
+      interval: 10s
+      timeout: 5s
+    volumes:
+      - ./database.schema.sql:/docker-entrypoint-initdb.d/database.schema.sql:ro
+    command: --character-set-server=utf8 --collation-server=utf8_bin --max-allowed-packet=67108864
+
+  taskbook:
+    image: malczuuu/taskbook:0.4.0
+    restart: unless-stopped
+    environment:
+      MARIADB_URI: jdbc:mariadb://mariadb:3306/taskbook
+      MARIADB_USERNAME: taskbook
+      MARIADB_PASSWORD: taskbook
+      JWT_SECRET: qwertyuiopasdfghjklzxcvbnm
+      JWT_LIFETIME: 864000
+    depends_on:
+      - mariadb
+
+  taskbook-frontend:
+    image: malczuuu/taskbook-frontend:0.3.0
+    restart: unless-stopped
+    depends_on:
+      - taskbook
+
+  gateway:
+    image: nginx:1.15.8-alpine
+    restart: unless-stopped
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - 127.0.0.1:26162:80
+    depends_on:
+      - taskbook
+      - taskbook-frontend

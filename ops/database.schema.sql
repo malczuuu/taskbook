@@ -1,3 +1,5 @@
+USE `taskbook`;
+
 CREATE TABLE `boards` (
                           `board_id` bigint(20) NOT NULL,
                           `board_archived_time` datetime DEFAULT NULL,
