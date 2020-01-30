@@ -28,7 +28,7 @@ dependencies {
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client:2.5.1")
 
     implementation("com.auth0:java-jwt:3.8.0")
-    implementation("io.github.malczuuu.problem4j:problem4j-spring-web:2.0.0-rc.5")
+    implementation("io.github.malczuuu.problem4j:problem4j-spring-web:2.0.0")
 
     testRuntimeOnly("com.h2database:h2:1.4.199")
 }

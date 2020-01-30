@@ -2,7 +2,7 @@ package io.github.malczuuu.taskbook.rest.support;
 
 import io.github.malczuuu.problem4j.core.Problem;
 import io.github.malczuuu.problem4j.core.ProblemBuilder;
-import io.github.malczuuu.problem4j.spring.web.ValidationError;
+import io.github.malczuuu.problem4j.spring.web.Violation;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.ConstraintViolationException;
@@ -27,11 +27,11 @@ public class ConstraintViolationExceptionHandler {
     return new ResponseEntity<>(problem.build(), HttpStatus.BAD_REQUEST);
   }
 
-  private List<ValidationError> retrieveViolationsFrom(ConstraintViolationException ex) {
+  private List<Violation> retrieveViolationsFrom(ConstraintViolationException ex) {
     return ex.getConstraintViolations().stream()
         .map(
             violation ->
-                new ValidationError(violation.getPropertyPath().toString(), violation.getMessage()))
+                new Violation(violation.getPropertyPath().toString(), violation.getMessage()))
         .collect(Collectors.toList());
   }
 }
