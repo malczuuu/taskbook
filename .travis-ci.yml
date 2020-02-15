@@ -1,0 +1,13 @@
+os: linux
+group: stable
+dist: trusty
+
+language: node_js
+node_js:
+  - "12.13.0"
+
+install: npm install
+
+script:
+  - npm run prettier-validate
+  - npm run build
