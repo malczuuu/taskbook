@@ -2,8 +2,10 @@
 
 [![Build Status](https://travis-ci.org/malczuuu/taskbook.svg?branch=master)](https://travis-ci.org/malczuuu/taskbook)
 
-Backend service for Taskbook application. Checkout also
-[frontend application](https://github.com/malczuuu/taskbook-frontend).
+Taskbook application consists of:
+
+* [backend application](https://github.com/malczuuu/taskbook)
+* [frontend application](https://github.com/malczuuu/taskbook-frontend)
 
 ## Configuration
 
@@ -19,10 +21,20 @@ Configuration is possible via JVM properties.
 
 ## Development
 
-* Prepare [Docker](https://docs.docker.com/install/) environment with `docker-compose up -d`.
-* Run service in development environment with `./gradlew bootRun` task.
+Development environment requires [Docker](https://docs.docker.com/install/) and
+[Docker Compose](https://docs.docker.com/compose/install/).
 
-**Note** that running service requires Java version at least 8.
+* Prepare environment with `docker-compose up -d`.
+* Run service using Gradle with `./gradlew bootRun` task.
+
+  Alternatively you can build service with `./gradlew build` task and run JARfile created in
+  `build/libs/`. Running also works fine from most IDEs.
+
+* Backend in development profile will listen on port 26160 and will create it's own database by
+  itself. Production (Docker) deployment uses port 80 and require database model to be created
+  separately.
+
+**Note** that running service requires Java version 11+.
 
 ## Docker
 
@@ -37,6 +49,6 @@ above.
 | `JWT_SECRET`       | `-Dtaskbook.jwt.secret`        | `0000000000`                           |
 | `JWT_LIFETIME`     | `-Dtaskbook.jwt.lifetime`      | `864000`                               |
 
-Note that within Docker container service will be launched with `production` profile, which means
-that database schema won't be automatically created (`spring.jpa.hibernate.ddl-auto=none`). It's
-required to create [database schema](/ops/database.schema.sql) manually.
+**Note** that within Docker container service will be launched with `production` profile, which
+means that database schema won't be automatically created (`spring.jpa.hibernate.ddl-auto=none`).
+It's required to create [database schema](/operations/deployment/database.schema.sql) manually.

@@ -12,7 +12,7 @@ WORKDIR /taskbook
 EXPOSE 80
 
 COPY --from=builder /home/gradle/build/libs/*.jar /taskbook/taskbook.jar
-COPY --from=builder /home/gradle/docker-entrypoint.sh /taskbook/taskbook.sh
+COPY --from=builder /home/gradle/operations/docker-entrypoint.sh /taskbook/taskbook.sh
 
 ENV MARIADB_URI jdbc:mariadb://mariadb:3306/taskbook
 ENV MARIADB_USERNAME taskbook

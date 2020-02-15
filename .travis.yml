@@ -3,6 +3,8 @@ group: stable
 dist: trusty
 
 language: java
+jdk:
+  - openjdk11
 
 cache:
   directories:

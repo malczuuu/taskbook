@@ -8,7 +8,6 @@ import io.github.malczuuu.taskbook.rest.support.Pagination;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.SliceImpl;
 import org.springframework.security.access.prepost.PreAuthorize;
