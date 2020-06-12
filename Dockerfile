@@ -1,11 +1,11 @@
-FROM gradle:6.1.1-jdk11 as builder
+FROM gradle:6.5-jdk11 as builder
 
 USER root
 COPY . .
 RUN gradle build -i -x test && chmod +x ./operations/docker-entrypoint.sh
 
 
-FROM openjdk:11.0.5-jre-slim
+FROM openjdk:11.0.7-jre-slim
 
 WORKDIR /taskbook
 
