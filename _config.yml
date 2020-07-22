@@ -1,2 +1,5 @@
 theme: jekyll-theme-minimal
 title: Taskbook
+description: >-
+  Simple task management software, developed as a project at Cracow University of Technology.
+github_username: malczuuu
