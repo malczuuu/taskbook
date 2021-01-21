@@ -1,4 +1,4 @@
-FROM gradle:6.5-jdk11 as builder
+FROM gradle:6.8-jdk11 as builder
 
 USER root
 COPY . .
