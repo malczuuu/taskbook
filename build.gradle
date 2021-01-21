@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "io.github.malczuuu"
-version = "0.7.0"
+version = "1.0.0-SNAPSHOT"
 
 sourceCompatibility = 11
 targetCompatibility = 11
