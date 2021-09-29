@@ -14,11 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/error")
 public class ProblemErrorController implements ErrorController {
 
-  @Override
-  public String getErrorPath() {
-    return "/error";
-  }
-
   @GetMapping(produces = "application/problem+json")
   public ResponseEntity<Problem> handle(HttpServletRequest request) {
     HttpStatus status = readErrorStatusFrom(request);
