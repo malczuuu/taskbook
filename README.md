@@ -29,6 +29,7 @@ Running relies on [Docker][docker] and [Docker Compose][docker-compose].
 1. Build proper Docker images, according to the instructions in `README.md` files.
 
     * [`taskbook`][taskbook]
+
     * [`taskbook-frontend`][taskbook-frontend]
 
 2. Launch pre-configured environment from [`deployment/`][deployment] directory.
@@ -37,11 +38,24 @@ Running relies on [Docker][docker] and [Docker Compose][docker-compose].
    $ docker-compose up -d
    ```
 
+   Verify services being up and running.
+
+   ```shell
+   $ docker-compose ps
+   ```
+
    **Note**, that this would take a while and might require restart of some services, due to the
    `depends_on` setting being limited only to controlling the startup order, without proper
    coordination.
 
 3. Browse gateway at [`http://localhost:26162`](http://localhost:26162).
+
+4. Log in with default user credentials.
+
+   ```text
+   username: admin@example.com
+   password: admin
+   ```
 
 ## Project repositories
 
