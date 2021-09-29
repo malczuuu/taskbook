@@ -37,6 +37,8 @@ Running relies on [Docker][docker] and [Docker Compose][docker-compose].
    $ docker-compose up -d
    ```
 
+3. Browse gateway at [`http://localhost:26162`](http://localhost:26162).
+
 ## Project repositories
 
 * [`taskbook`][taskbook], which holds backend application.
