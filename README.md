@@ -27,8 +27,10 @@ It's available [here](./Taskbook-summary-PL.pdf).
 Running relies on [Docker][docker] and [Docker Compose][docker-compose].
 
 1. Build proper Docker images, according to the instructions in `README.md` files.
-    1. [`taskbook`][taskbook]
-    2. [`taskbook-frontend`][taskbook-frontend]
+
+   * [`taskbook`][taskbook]
+   * [`taskbook-frontend`][taskbook-frontend]
+
 2. Launch pre-configured environment from [`deployment/`][deployment] directory.
 
    ```shell
