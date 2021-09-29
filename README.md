@@ -11,7 +11,7 @@ A simple issue-tracker application. Developed by Damian Malczewski as a project 
 
 ## Summary
 
-The summary is written in Polish and was made for the purpose of documenting project at college.
+The summary is written in Polish and was made for the purpose of documenting the project at college.
 It's available [here](./Taskbook-summary-PL.pdf).
 
 ## Technologies
