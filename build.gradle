@@ -42,3 +42,7 @@ test {
 googleJavaFormat {
     toolVersion = "1.8"
 }
+
+jar {
+    enabled = false
+}
