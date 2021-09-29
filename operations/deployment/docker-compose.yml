@@ -16,7 +16,7 @@ services:
     command: --character-set-server=utf8 --collation-server=utf8_bin --max-allowed-packet=67108864
 
   taskbook:
-    image: malczuuu/taskbook:0.7.1
+    image: malczuuu/taskbook:latest
     environment:
       MARIADB_URI: jdbc:mariadb://mariadb:3306/taskbook
       MARIADB_USERNAME: taskbook
@@ -27,7 +27,7 @@ services:
       - mariadb
 
   taskbook-frontend:
-    image: malczuuu/taskbook-frontend:0.7.1
+    image: malczuuu/taskbook-frontend:latest
     depends_on:
       - taskbook
 
