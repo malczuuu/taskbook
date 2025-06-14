@@ -1,7 +1,7 @@
 version: "3"
 services:
   mariadb:
-    image: mariadb:10.5.12
+    image: mariadb:11.8.2
     environment:
       MYSQL_USER: taskbook
       MYSQL_PASSWORD: taskbook
@@ -32,7 +32,7 @@ services:
       - taskbook
 
   gateway:
-    image: nginx:1.21.3-alpine
+    image: nginx:1.28.0-alpine
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     ports:

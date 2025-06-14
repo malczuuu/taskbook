@@ -3,7 +3,7 @@ package io.github.malczuuu.taskbook.rest;
 import io.github.malczuuu.taskbook.core.service.IssueService;
 import io.github.malczuuu.taskbook.model.IssueRawModel;
 import io.github.malczuuu.taskbook.rest.support.Pagination;
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.Pattern;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

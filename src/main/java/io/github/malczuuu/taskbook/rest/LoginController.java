@@ -3,7 +3,7 @@ package io.github.malczuuu.taskbook.rest;
 import io.github.malczuuu.taskbook.model.CredentialsModel;
 import io.github.malczuuu.taskbook.model.SessionModel;
 import io.github.malczuuu.taskbook.security.LoginService;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

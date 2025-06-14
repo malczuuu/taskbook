@@ -15,7 +15,7 @@ spring:
     hibernate:
       ddl-auto: update
       use-new-id-generator-mappings: true
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database-platform: org.hibernate.dialect.MySQLDialect
   jackson:
     date-format: com.fasterxml.jackson.databind.util.StdDateFormat
     serialization:

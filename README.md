@@ -3,7 +3,7 @@
 Backend for Taskbook application. Developed by Damian Malczewski as a project at
 [Cracow University of Technology][pk.edu.pl] in 2019.
 
-Afterwards it served the purpose of testing Angular updates.
+Afterwards it served the purpose of testing Spring Boot updates.
 
 ## Table of Contents
 

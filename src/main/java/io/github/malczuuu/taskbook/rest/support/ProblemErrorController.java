@@ -1,8 +1,8 @@
 package io.github.malczuuu.taskbook.rest.support;
 
 import io.github.malczuuu.problem4j.core.Problem;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
