@@ -4,7 +4,7 @@ import io.github.malczuuu.taskbook.core.service.IssueService;
 import io.github.malczuuu.taskbook.model.IssueRawModel;
 import io.github.malczuuu.taskbook.rest.support.Pagination;
 import jakarta.validation.constraints.Pattern;
-import org.springframework.data.domain.Page;
+import org.springframework.data.web.PagedModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +19,7 @@ public class IssuesRawController {
   }
 
   @GetMapping(params = {"assignee"})
-  public Page<IssueRawModel> findIssuesAssignedTo(
+  public PagedModel<IssueRawModel> findIssuesAssignedTo(
       @RequestParam("assignee") String assignee,
       @RequestParam(name = "page", defaultValue = "0")
           @Pattern(regexp = "^\\d+$", message = "must be a number")
@@ -28,6 +28,7 @@ public class IssuesRawController {
           @Pattern(regexp = "^\\d+$", message = "must be a number")
           String size) {
     Pagination pagination = Pagination.process(page, size);
-    return issuesRawService.findRawByAssignee(assignee, pagination.getPage(), pagination.getSize());
+    return new PagedModel<>(
+        issuesRawService.findRawByAssignee(assignee, pagination.getPage(), pagination.getSize()));
   }
 }

@@ -10,6 +10,7 @@ import jakarta.validation.constraints.Pattern;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.SliceImpl;
+import org.springframework.data.web.PagedModel;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,7 +35,7 @@ public class UserController {
   }
 
   @GetMapping(produces = "application/json")
-  public Page<UserModel> findAll(
+  public PagedModel<UserModel> findAll(
       @RequestParam(name = "page", defaultValue = "0")
           @Pattern(regexp = "^\\d+$", message = "must be a number")
           String page,
@@ -42,7 +43,7 @@ public class UserController {
           @Pattern(regexp = "^\\d+$", message = "must be a number")
           String size) {
     Pagination pagination = Pagination.process(page, size);
-    return userService.findAll(pagination.getPage(), pagination.getSize());
+    return new PagedModel<>(userService.findAll(pagination.getPage(), pagination.getSize()));
   }
 
   @GetMapping(

@@ -7,7 +7,7 @@ import io.github.malczuuu.taskbook.model.NewIssueModel;
 import io.github.malczuuu.taskbook.rest.support.Pagination;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
-import org.springframework.data.domain.Page;
+import org.springframework.data.web.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,7 +32,7 @@ public class IssueController {
   }
 
   @GetMapping(produces = "application/json")
-  public Page<IssueModel> findAll(
+  public PagedModel<IssueModel> findAll(
       @PathVariable("board") String board,
       @RequestParam(name = "page", defaultValue = "0")
           @Pattern(regexp = "^\\d+$", message = "must be a number")
@@ -41,13 +41,14 @@ public class IssueController {
           @Pattern(regexp = "^\\d+$", message = "must be a number")
           String size) {
     Pagination pagination = Pagination.process(page, size);
-    return issueService.findAll(board, pagination.getPage(), pagination.getSize());
+    return new PagedModel<>(
+        issueService.findAll(board, pagination.getPage(), pagination.getSize()));
   }
 
   @GetMapping(
       produces = "application/json",
       params = {"title"})
-  public Page<IssueModel> findAllFilterByTitle(
+  public PagedModel<IssueModel> findAllFilterByTitle(
       @PathVariable("board") String board,
       @RequestParam("title") String title,
       @RequestParam(name = "page", defaultValue = "0")
@@ -57,8 +58,9 @@ public class IssueController {
           @Pattern(regexp = "^\\d+$", message = "must be a number")
           String size) {
     Pagination pagination = Pagination.process(page, size);
-    return issueService.findAllFilterByTitle(
-        board, title, pagination.getPage(), pagination.getSize());
+    return new PagedModel<>(
+        issueService.findAllFilterByTitle(
+            board, title, pagination.getPage(), pagination.getSize()));
   }
 
   @PostMapping(produces = "application/json", consumes = "application/json")

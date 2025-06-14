@@ -6,7 +6,7 @@ import io.github.malczuuu.taskbook.model.BoardUpdateModel;
 import io.github.malczuuu.taskbook.rest.support.Pagination;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
-import org.springframework.data.domain.Page;
+import org.springframework.data.web.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -33,7 +33,7 @@ public class BoardController {
   }
 
   @GetMapping(produces = "application/json")
-  public Page<BoardModel> findAll(
+  public PagedModel<BoardModel> findAll(
       @RequestParam(name = "page", defaultValue = "0")
           @Pattern(regexp = "^\\d+$", message = "must be a number")
           String page,
@@ -41,13 +41,13 @@ public class BoardController {
           @Pattern(regexp = "^\\d+$", message = "must be a number")
           String size) {
     Pagination pagination = Pagination.process(page, size);
-    return boardService.findAll(pagination.getPage(), pagination.getSize());
+    return new PagedModel<>(boardService.findAll(pagination.getPage(), pagination.getSize()));
   }
 
   @GetMapping(
       produces = "application/json",
       params = {"name"})
-  public Page<BoardModel> findAllFilterByName(
+  public PagedModel<BoardModel> findAllFilterByName(
       @RequestParam("name") String name,
       @RequestParam(name = "page", defaultValue = "0")
           @Pattern(regexp = "^\\d+$", message = "must be a number")
@@ -56,7 +56,8 @@ public class BoardController {
           @Pattern(regexp = "^\\d+$", message = "must be a number")
           String size) {
     Pagination pagination = Pagination.process(page, size);
-    return boardService.findAllFilterByName(name, pagination.getPage(), pagination.getSize());
+    return new PagedModel<>(
+        boardService.findAllFilterByName(name, pagination.getPage(), pagination.getSize()));
   }
 
   @PostMapping(produces = "application/json", consumes = "application/json")

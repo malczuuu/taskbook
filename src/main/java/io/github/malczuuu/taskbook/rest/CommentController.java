@@ -6,7 +6,7 @@ import io.github.malczuuu.taskbook.model.NewCommentModel;
 import io.github.malczuuu.taskbook.rest.support.Pagination;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
-import org.springframework.data.domain.Page;
+import org.springframework.data.web.PagedModel;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +27,7 @@ public class CommentController {
   }
 
   @GetMapping(produces = "application/json")
-  public Page<CommentModel> findAll(
+  public PagedModel<CommentModel> findAll(
       @PathVariable("board") String board,
       @PathVariable("issue") String issue,
       @RequestParam(name = "page", defaultValue = "0")
@@ -37,7 +37,8 @@ public class CommentController {
           @Pattern(regexp = "^\\d+$", message = "must be a number")
           String size) {
     Pagination pagination = Pagination.process(page, size);
-    return commentService.findAll(board, issue, pagination.getPage(), pagination.getSize());
+    return new PagedModel<>(
+        commentService.findAll(board, issue, pagination.getPage(), pagination.getSize()));
   }
 
   @PostMapping(produces = "application/json", consumes = "application/json")
