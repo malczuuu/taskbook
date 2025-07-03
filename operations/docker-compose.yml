@@ -1,4 +1,3 @@
-version: "3"
 services:
   mariadb:
     image: mariadb:11.8.2
@@ -18,11 +17,11 @@ services:
   taskbook:
     image: malczuuu/taskbook:latest
     environment:
-      MARIADB_URI: jdbc:mariadb://mariadb:3306/taskbook
-      MARIADB_USERNAME: taskbook
-      MARIADB_PASSWORD: taskbook
-      JWT_SECRET: qwertyuiopasdfghjklzxcvbnm
-      JWT_LIFETIME: 864000
+      SPRING_DATASOURCE_URl: jdbc:mariadb://mariadb:3306/taskbook
+      SPRING_DATASOURCE_USERNAME: taskbook
+      SPRING_DATASOURCE_PASSWORD: taskbook
+      TASKBOOK_JWT_SECRET: qwertyuiopasdfghjklzxcvbnm
+      TASKBOOK_JWT_LIFETIME: 864000
     depends_on:
       - mariadb
 

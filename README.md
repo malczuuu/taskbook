@@ -22,32 +22,19 @@ $ docker build -t taskbook-backend:latest .
 
 ## Configuration
 
-Configuration is possible via JVM properties.
+Configuration is possible via application properties.
 
-| property                       | description                | default                                  |
-|--------------------------------|----------------------------|------------------------------------------|
-| `-Dspring.datasource.url`      | database connection string | `jdbc:mariadb://127.0.0.1:3306/taskbook` |
-| `-Dspring.datasource.username` | database username          | `taskbook`                               |
-| `-Dspring.datasource.password` | database password          | `taskbook`                               |
-| `-Dtaskbook.jwt.secret`        | JWT secret                 | `0000000000`                             |
-| `-Dtaskbook.jwt.lifetime`      | JWT lifetime (in seconds)  | `864000`                                 |
-
-### Configuration of Docker container
-
-Docker image can be configured using environment variables which represents JVM properties listed
-above.
-
-| environment        | description                | default value                          |
-|--------------------|----------------------------|----------------------------------------|
-| `MARIADB_URI`      | database connection string | `jdbc:mariadb://mariadb:3306/taskbook` |
-| `MARIADB_USERNAME` | database username          | `taskbook`                             |
-| `MARIADB_PASSWORD` | database password          | `taskbook`                             |
-| `JWT_SECRET`       | JWT secret                 | `0000000000`                           |
-| `JWT_LIFETIME`     | JWT lifetime (in seconds)  | `864000`                               |
+| property                     | description                | default                                  |
+|------------------------------|----------------------------|------------------------------------------|
+| `spring.datasource.url`      | database connection string | `jdbc:mariadb://127.0.0.1:3306/taskbook` |
+| `spring.datasource.username` | database username          | `taskbook`                               |
+| `spring.datasource.password` | database password          | `taskbook`                               |
+| `taskbook.jwt.secret`        | JWT secret                 | `0000000000`                             |
+| `taskbook.jwt.lifetime`      | JWT lifetime (in seconds)  | `864000`                                 |
 
 **Note** that within Docker container service will be launched with `production` profile, which
 means that database schema won't be automatically created (`spring.jpa.hibernate.ddl-auto=none`).
-It's required to create [database schema](./operations/deployment/database.schema.sql) manually.
+It's required to create [database schema](./operations/database.schema.sql) manually.
 
 ## Running on local machine
 
