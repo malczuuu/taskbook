@@ -27,7 +27,8 @@ Running relies on [Docker][docker] and [Docker Compose][docker-compose].
 
 1. Build proper Docker images, according to the instructions in `README.md` files.
 
-    * [`taskbook`][taskbook]
+    * [`taskbook-be`][taskbook-be-readme]
+    * [`taskbook-fe`][taskbook-fe-readme]
 
 2. Launch pre-configured environment from [`deployment/`][deployment] directory.
 
@@ -67,5 +68,9 @@ Running relies on [Docker][docker] and [Docker Compose][docker-compose].
 [docker-compose]: https://docs.docker.com/compose/
 
 [taskbook]: https://github.com/malczuuu/taskbook
+
+[taskbook-be-readme]: https://github.com/malczuuu/taskbook/blob/main/taskbook-be/README.md
+
+[taskbook-fe-readme]: https://github.com/malczuuu/taskbook/blob/main/taskbook-fe/README.md
 
 [deployment]: https://github.com/malczuuu/taskbook/tree/master/operations/deployment
