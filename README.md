@@ -8,7 +8,6 @@ A simple issue-tracker application. Developed by Damian Malczewski as a project 
 * [Summary](#summary)
 * [Technologies](#technologies)
 * [Running full-stack solution on local machine](#running-full-stack-solution-on-local-machine)
-* [Project repositories](#project-repositories)
 
 ## Summary
 
@@ -29,8 +28,6 @@ Running relies on [Docker][docker] and [Docker Compose][docker-compose].
 1. Build proper Docker images, according to the instructions in `README.md` files.
 
     * [`taskbook`][taskbook]
-
-    * [`taskbook-frontend`][taskbook-frontend]
 
 2. Launch pre-configured environment from [`deployment/`][deployment] directory.
 
@@ -57,11 +54,6 @@ Running relies on [Docker][docker] and [Docker Compose][docker-compose].
    password: admin
    ```
 
-## Project repositories
-
-* [`taskbook`][taskbook], which holds backend application.
-* [`taskbook-frontend`][taskbook-frontend], which holds frontend application.
-
 [pk.edu.pl]: https://pk.edu.pl
 
 [spring-boot]: https://docs.spring.io/spring-boot/docs/2.5.5/reference/html/
@@ -75,7 +67,5 @@ Running relies on [Docker][docker] and [Docker Compose][docker-compose].
 [docker-compose]: https://docs.docker.com/compose/
 
 [taskbook]: https://github.com/malczuuu/taskbook
-
-[taskbook-frontend]: https://github.com/malczuuu/taskbook-frontend
 
 [deployment]: https://github.com/malczuuu/taskbook/tree/master/operations/deployment
