@@ -1,4 +1,4 @@
-name: Weekly Gradle Build
+name: Weekly Gradle CI
 
 on:
   # Every Sunday at midnight UTC
@@ -27,4 +27,5 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build with Gradle Wrapper
+        working-directory: taskbook-be
         run: ./gradlew build

@@ -1,10 +1,14 @@
-name: Gradle Build
+name: Gradle CI
 
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'taskbook-be/**'
   pull_request:
     branches: [ "main" ]
+    paths:
+      - 'taskbook-be/**'
 
 jobs:
   build:
@@ -26,6 +30,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build with Gradle Wrapper
+        working-directory: taskbook-be
         run: ./gradlew build
 
   dependency-submission:
@@ -45,3 +50,5 @@ jobs:
       # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
       - name: Generate and submit dependency graph
         uses: gradle/actions/dependency-submission@v4
+        with:
+          build-root-directory: taskbook-be

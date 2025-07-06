@@ -3,12 +3,21 @@ name: Node.js CI
 on:
   push:
     branches: ['main']
+    paths:
+      - 'taskbook-fe/**'
   pull_request:
     branches: ['main']
+    paths:
+      - 'taskbook-fe/**'
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: taskbook-fe
+
     strategy:
       matrix:
         node-version: [20.x, 22.x, 24.x]
@@ -21,6 +30,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+          cache-dependency-path: 'taskbook-fe/package-lock.json'
 
       - run: npm ci
 
