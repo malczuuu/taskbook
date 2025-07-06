@@ -27,8 +27,8 @@ Running relies on [Docker][docker] and [Docker Compose][docker-compose].
 
 1. Build proper Docker images, according to the instructions in `README.md` files.
 
-    * [`taskbook-be`][taskbook-be-readme]
-    * [`taskbook-fe`][taskbook-fe-readme]
+    * [`taskbook-be/README.md`][taskbook-be-readme]
+    * [`taskbook-fe/README.md`][taskbook-fe-readme]
 
 2. Launch pre-configured environment from [`deployment/`][deployment] directory.
 
