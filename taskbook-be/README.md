@@ -34,7 +34,7 @@ Configuration is possible via application properties.
 
 **Note** that within Docker container service will be launched with `production` profile, which
 means that database schema won't be automatically created (`spring.jpa.hibernate.ddl-auto=none`).
-It's required to create [database schema](./operations/database.schema.sql) manually.
+It's required to create [database schema](../taskbook-env/database.schema.sql) manually.
 
 ## Running on local machine
 
