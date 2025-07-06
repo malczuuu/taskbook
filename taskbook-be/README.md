@@ -1,9 +1,4 @@
-# Taskbook
-
-Backend for Taskbook application. Developed by Damian Malczewski as a project at
-[Cracow University of Technology][pk.edu.pl] in 2019.
-
-Afterwards it served the purpose of testing Spring Boot updates.
+# Taskbook Backend
 
 ## Table of Contents
 
@@ -56,16 +51,5 @@ Run service using Gradle with `./gradlew bootRun` task.
 
 **Note**, that as a Docker service, the application is available on `:80`.
 
-Alternatively you can build service with `./gradlew build` task and run JARfile created
-in `build/libs/`. Running also works fine from most IDEs.
-
-## Project repositories
-
-* [`taskbook`][taskbook], which holds backend application.
-* [`taskbook-frontend`][taskbook-frontend], which holds frontend application.
-
-[pk.edu.pl]: https://pk.edu.pl
-
-[taskbook]: https://github.com/malczuuu/taskbook
-
-[taskbook-frontend]: https://github.com/malczuuu/taskbook-frontend
+Alternatively you can build service with `./gradlew build` task and run JARfile created in 
+`build/libs/`. Running also works fine from most IDEs.
