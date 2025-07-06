@@ -1,0 +1,38 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">First name</th>
+      <th scope="col">Last name</th>
+      <th scope="col">Role</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users; let i = index">
+      <th scope="row">{{ indexOf(i) }}</th>
+      <td>{{ user.email }}</td>
+      <td>{{ user.first_name }}</td>
+      <td>{{ user.last_name }}</td>
+      <td>
+        <label for="user-role-select-{{ user.uid }}" class="sr-only">Role</label>
+        <select
+          id="user-role-select-{{ user.uid }}"
+          class="form-control form-control-sm"
+          [value]="user.role"
+          #roleSelect
+          (change)="onRoleSelect(user, roleSelect.value)"
+        >
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+      </td>
+      <td class="text-right">
+        <button class="btn btn-sm btn-outline-danger" (click)="userDeleteClick(user)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
