@@ -3,17 +3,18 @@
 </div>
 <div class="modal-body">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <label for="select-assignee-query-input" class="sr-only">Query</label>
-    <div class="input-group mb-3">
+    <div class="form-floating mb-3">
       <input
         id="select-assignee-query-input"
         type="text"
         formControlName="query"
         class="form-control"
+        placeholder=""
       />
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="submit">Find</button>
-      </div>
+      <label for="select-assignee-query-input">Search query</label>
+    </div>
+    <div class="d-grid gap-2">
+      <button class="btn btn-outline-primary" type="submit">Find</button>
     </div>
   </form>
   <table class="table">

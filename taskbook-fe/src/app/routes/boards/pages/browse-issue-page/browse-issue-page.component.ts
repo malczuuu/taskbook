@@ -30,7 +30,7 @@ export class BrowseIssuePageComponent implements OnInit, OnDestroy {
   commentsPageNumber = 0;
   commentsPageSize = 20;
 
-  @ViewChild('commentSection', { static: true })
+  @ViewChild('commentSection')
   commentSection: CommentSectionComponent;
 
   constructor(
@@ -125,7 +125,9 @@ export class BrowseIssuePageComponent implements OnInit, OnDestroy {
 
   onNewComment(comment: NewComment) {
     this.commentsService.create(this.board, this.issue.uid, comment).subscribe((saved) => {
-      this.commentSection.clear();
+      if (this.commentSection) {
+        this.commentSection.clear();
+      }
       this.commentsPageNumber = 0;
       this.fetchComments();
     });

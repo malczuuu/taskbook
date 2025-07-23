@@ -1,16 +1,17 @@
 <div class="text-center">{{ comments.total_elements }} comments in total.</div>
 
 <form [formGroup]="form" (ngSubmit)="onSaveClick()">
-  <label for="comment-content-textarea">Add new comment</label>
-
-  <div class="form-group">
+  <div class="form-floating mb-3">
     <textarea
       id="comment-content-textarea"
       class="form-control"
       formControlName="content"
+      placeholder=""
+      style="height: 100px"
     ></textarea>
+    <label for="comment-content-textarea">Add new comment</label>
   </div>
-  <div class="form-group">
+  <div class="d-grid gap-2">
     <button class="btn btn-outline-primary" type="submit" [disabled]="!formValid()">Comment</button>
   </div>
 </form>
