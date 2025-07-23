@@ -27,24 +27,20 @@ Running relies on [Docker][docker] and [Docker Compose][docker-compose].
 
 1. Build proper Docker images, according to the instructions in `README.md` files.
 
-    * [`taskbook-be/README.md`][taskbook-be-readme]
-    * [`taskbook-fe/README.md`][taskbook-fe-readme]
+    * [`taskbook-backend`][taskbook-backend]
+    * [`taskbook-frontend`][taskbook-frontend]
 
-2. Launch pre-configured environment from [`deployment/`][deployment] directory.
+2. Launch pre-configured environment from [`taskbook-compose/`][taskbook-compose] directory.
 
    ```shell
-   $ docker-compose up -d
+   $ docker compose up -d
    ```
 
    Verify services being up and running.
 
    ```shell
-   $ docker-compose ps
+   $ docker compose ps
    ```
-
-   **Note**, that this would take a while and might require restart of some services, due to the
-   `depends_on` setting being limited only to controlling the startup order, without proper
-   coordination.
 
 3. Browse gateway at [`http://localhost:26162`](http://localhost:26162).
 
@@ -69,8 +65,8 @@ Running relies on [Docker][docker] and [Docker Compose][docker-compose].
 
 [taskbook]: https://github.com/malczuuu/taskbook
 
-[taskbook-be-readme]: https://github.com/malczuuu/taskbook/blob/main/taskbook-be/README.md
+[taskbook-backend]: https://github.com/malczuuu/taskbook/tree/main/taskbook-backend
 
-[taskbook-fe-readme]: https://github.com/malczuuu/taskbook/blob/main/taskbook-fe/README.md
+[taskbook-frontend]: https://github.com/malczuuu/taskbook/tree/main/taskbook-frontend
 
-[deployment]: https://github.com/malczuuu/taskbook/tree/master/operations/deployment
+[taskbook-compose]: https://github.com/malczuuu/taskbook/tree/main/taskbook-compose/deployment
