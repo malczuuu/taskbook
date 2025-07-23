@@ -2,12 +2,12 @@
 
 ## Table of Contents
 
-* [Building Docker image](#building-docker-image)
+* [Building Docker Image](#building-docker-image)
 * [Configuration](#configuration)
 * [Running on local machine](#running-on-local-machine)
 * [Project repositories](#project-repositories)
 
-## Building Docker image
+## Building Docker Image
 
 Building Docker automatically builds production-ready jarfile in a multi-stage build.
 
