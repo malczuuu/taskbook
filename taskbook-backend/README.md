@@ -33,7 +33,7 @@ It's required to create [database schema](../taskbook-compose/database.schema.sq
 
 ## Running on local machine
 
-Running locally requires MariaDB database. See [`docker-compose.yml`](../taskbook-localhost/docker-compose.yml).
+Running locally requires MariaDB database. See [`docker-compose.yaml`](../taskbook-localhost/docker-compose.yaml).
 
 ```shell
 $ docker-compose up -d
