@@ -29,11 +29,11 @@ Configuration is possible via application properties.
 
 **Note** that within Docker container service will be launched with `production` profile, which
 means that database schema won't be automatically created (`spring.jpa.hibernate.ddl-auto=none`).
-It's required to create [database schema](../taskbook-env/database.schema.sql) manually.
+It's required to create [database schema](../taskbook-compose/database.schema.sql) manually.
 
 ## Running on local machine
 
-Running locally requires MariaDB database. See [`docker-compose.yml`](./docker-compose.yml).
+Running locally requires MariaDB database. See [`docker-compose.yml`](../taskbook-localhost/docker-compose.yml).
 
 ```shell
 $ docker-compose up -d

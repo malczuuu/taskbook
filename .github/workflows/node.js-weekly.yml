@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: taskbook-fe
+        working-directory: taskbook-frontend
 
     strategy:
       matrix:
@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-          cache-dependency-path: 'taskbook-fe/package-lock.json'
+          cache-dependency-path: 'taskbook-frontend/package-lock.json'
 
       - run: npm ci
 

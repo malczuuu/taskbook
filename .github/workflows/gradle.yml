@@ -4,11 +4,11 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'taskbook-be/**'
+      - 'taskbook-backend/**'
   pull_request:
     branches: [ "main" ]
     paths:
-      - 'taskbook-be/**'
+      - 'taskbook-backend/**'
 
 jobs:
   build:
@@ -30,7 +30,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build with Gradle Wrapper
-        working-directory: taskbook-be
+        working-directory: taskbook-backend
         run: ./gradlew build
 
   dependency-submission:
@@ -51,4 +51,4 @@ jobs:
       - name: Generate and submit dependency graph
         uses: gradle/actions/dependency-submission@v4
         with:
-          build-root-directory: taskbook-be
+          build-root-directory: taskbook-backend

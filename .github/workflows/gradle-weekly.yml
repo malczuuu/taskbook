@@ -27,5 +27,5 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build with Gradle Wrapper
-        working-directory: taskbook-be
+        working-directory: taskbook-backend
         run: ./gradlew build

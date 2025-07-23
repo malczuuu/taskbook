@@ -7,6 +7,7 @@ Afterward, it served the purpose of testing Spring Boot and Angular updates.
 
 ## Modules
 
-- [**`taskbook-be`**](./taskbook-be). Backend application in Spring Boot.
-- [**`taskbook-fe`**](./taskbook-fe). Frontend application in Angular.
-- [**`taskbook-env`**](./taskbook-env). Environment setup in Docker Compose.
+- [**`taskbook-backend`**](./taskbook-backend). Backend application in Spring Boot.
+- [**`taskbook-frontend`**](./taskbook-frontend). Frontend application in Angular.
+- [**`taskbook-compose`**](./taskbook-compose). Full application setup in Docker Compose.
+- [**`taskbook-localhost`**](./taskbook-compose). Environment setup in Docker Compose for local development.

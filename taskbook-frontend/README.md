@@ -16,9 +16,9 @@ docker build -t taskbook-frontend:latest .
 
 ## Running on local machine
 
-Running locally requires [`taskbook` backend application](../taskbook-be) (along with its own
+Running locally requires [`taskbook` backend application](../taskbook-backend) (along with its own
 dependencies) to be up and running. Angular development server launches a reverse-proxy for `/api`
-paths. Follow [backend instructions](../taskbook-be/README.md#running-on-local-machine) to launch
+paths. Follow [backend instructions](../taskbook-backend/README.md#running-on-local-machine) to launch
 it.
 
 To run Angular development server use `start` npm task.
