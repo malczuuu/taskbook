@@ -1,4 +1,5 @@
 services:
+
   mariadb:
     image: mariadb:11.8.2
     environment:
