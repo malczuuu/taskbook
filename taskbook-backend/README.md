@@ -12,7 +12,7 @@
 Building Docker automatically builds production-ready jarfile in a multi-stage build.
 
 ```bash
-$ docker build -t taskbook-backend:latest .
+docker build -t taskbook-backend:latest .
 ```
 
 ## Configuration
@@ -36,13 +36,13 @@ It's required to create [database schema](../taskbook-compose/database.schema.sq
 Running locally requires MariaDB database. See [`docker-compose.yaml`](../taskbook-localhost/docker-compose.yaml).
 
 ```shell
-$ docker-compose up -d
+docker compose up -d
 ```
 
 To run the application use `bootRun` Gradle task.
 
 ```shell
-$ ./gradlew bootRun
+./gradlew bootRun
 ```
 
 The application will be available on [`http://localhost:26160`](http://localhost:26160).
