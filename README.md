@@ -11,3 +11,11 @@ Afterward, it served the purpose of testing Spring Boot and Angular updates.
 - [**`taskbook-frontend`**](./taskbook-frontend). Frontend application in Angular.
 - [**`taskbook-compose`**](./taskbook-compose). Full application setup in Docker Compose.
 - [**`taskbook-localhost`**](./taskbook-compose). Environment setup in Docker Compose for local development.
+
+## Setting Up
+
+To set up and demonstrate the application, use the [`taskbook-compose`](./taskbook-compose) module.
+
+## Development
+
+To set up development environment, use the [`taskbook-localhost`](./taskbook-localhost) module.
