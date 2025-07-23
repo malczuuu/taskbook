@@ -20,6 +20,10 @@ reverse proxy.
    `docker-compose.yaml` uses `latest`.
 3. Run `docker compose up` in this directory.
 4. Access the application at [http://localhost:26162](http://localhost:26162).
+   ```text
+   username: admin@example.com
+   password: admin
+   ```
 
 **Note:** The MariaDB service may take some time to initialize. The backend might keep restarting until the database is
 ready.
