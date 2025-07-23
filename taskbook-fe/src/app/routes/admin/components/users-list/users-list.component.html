@@ -16,10 +16,9 @@
       <td>{{ user.first_name }}</td>
       <td>{{ user.last_name }}</td>
       <td>
-        <label for="user-role-select-{{ user.uid }}" class="sr-only">Role</label>
         <select
           id="user-role-select-{{ user.uid }}"
-          class="form-control form-control-sm"
+          class="form-select form-select-sm"
           [value]="user.role"
           #roleSelect
           (change)="onRoleSelect(user, roleSelect.value)"
