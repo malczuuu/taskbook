@@ -18,7 +18,7 @@ services:
   taskbook-backend:
     image: malczuuu/taskbook-backend:latest
     environment:
-      SPRING_DATASOURCE_URl: jdbc:mariadb://mariadb:3306/taskbook
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/taskbook
       SPRING_DATASOURCE_USERNAME: taskbook
       SPRING_DATASOURCE_PASSWORD: taskbook
       TASKBOOK_JWT_SECRET: qwertyuiopasdfghjklzxcvbnm
