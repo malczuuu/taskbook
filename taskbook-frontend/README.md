@@ -31,3 +31,7 @@ The application will be available on [`http://localhost:26161`](http://localhost
 
 **Note**, that as a Docker service, the application works as a
 [nginx](https://hub.docker.com/_/nginx) server, available on port `:80`.
+
+## Code Style
+
+This project uses [Prettier](https://prettier.io/) for code formatting. Use `npm run prettier` to format the code.
