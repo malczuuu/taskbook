@@ -1,7 +1,7 @@
 FROM gradle:8.14-jdk21 AS builder
 
 USER root
-COPY .. .
+COPY . .
 RUN gradle build -i -x test
 
 FROM eclipse-temurin:21-alpine
