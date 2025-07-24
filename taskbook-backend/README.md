@@ -53,3 +53,9 @@ Run service using Gradle with `./gradlew bootRun` task.
 
 Alternatively you can build service with `./gradlew build` task and run JARfile created in 
 `build/libs/`. Running also works fine from most IDEs.
+
+## Code Style
+
+Code style is enforced by `./gradlew spotlessApply` task. It uses [Google Java Style][google-java-style].
+
+[google-java-style]: https://google.github.io/styleguide/javaguide.html
