@@ -2,7 +2,7 @@ FROM node:24.1.0-slim AS builder
 
 WORKDIR /builder
 
-COPY .. ./
+COPY . ./
 RUN npm install && npm run build
 
 
