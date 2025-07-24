@@ -1,6 +1,6 @@
 # Taskbook
 
-Taskbook - a full-stack, simple issue tracker app with Spring Boot and Angular. Developed by DamianMalczewski as a
+Taskbook - a full-stack, simple issue tracker app with Spring Boot and Angular. Developed by Damian Malczewski as a
 project at [Cracow University of Technology](https://pk.edu.pl) in 2019.
 
 Afterward, it serves the purpose of testing new features in Spring Boot and Angular.
