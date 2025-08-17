@@ -1,8 +1,15 @@
 FROM gradle:8.14-jdk21 AS builder
 
+ARG APP_VERSION
+
 USER root
 COPY . .
-RUN gradle build -i -x test
+
+RUN if [ -n "$APP_VERSION" ]; then \
+        gradle build -i -x test -Pversion="$APP_VERSION"; \
+    else \
+        gradle build -i -x test; \
+    fi
 
 FROM eclipse-temurin:21-alpine
 

@@ -6,13 +6,22 @@ plugins {
     id "net.nemerosa.versioning" version "3.1.0"
 }
 
+group = "io.github.malczuuu"
+
 versioning {
     gitRepoRootDir = ".."
 }
 
-group = "io.github.malczuuu"
-version = (versioning.info.tag ?: "${versioning.info.lastTag}-${versioning.info.build}") \
-            + (versioning.info.dirty ? "-dirty" : "")
+/**
+ * Conditional approach to versioning. If `-Pversion=...` is specified on the command line, it will be used as the
+ * version. Otherwise, the version is derived from the git tag and build number.
+ */
+if (project.hasProperty('version')) {
+    version = project.property('version')
+} else {
+    def base = versioning.info.tag ?: "${versioning.info.lastTag}-${versioning.info.build}"
+    version = base + (versioning.info.dirty ? "-dirty" : "")
+}
 
 java {
     toolchain {
