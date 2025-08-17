@@ -1,4 +1,4 @@
-name: Weekly Gradle CI
+name: Weekly Build Taskbook Backend
 
 on:
   # Every Sunday at midnight UTC

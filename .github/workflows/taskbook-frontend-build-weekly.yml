@@ -1,4 +1,4 @@
-name: Weekly Node.js CI
+name: Weekly Build Taskbook Frontend
 
 on:
   # Every Sunday at midnight UTC

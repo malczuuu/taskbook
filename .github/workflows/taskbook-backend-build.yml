@@ -1,4 +1,4 @@
-name: Gradle CI
+name: Build Taskbook Backend
 
 on:
   push:
