@@ -26,6 +26,8 @@ jobs:
         with:
           context: ./${{ matrix.service }}
           file: ./${{ matrix.service }}/Dockerfile
+          build-args: |
+            APP_VERSION=${{ github.ref_name }}
           push: ${{ startsWith(github.ref, 'refs/tags/') }} # true on tag, false on branch
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/${{ matrix.service }}:${{ github.ref_name }}
