@@ -8,7 +8,7 @@ services:
       MYSQL_DATABASE: taskbook
       MYSQL_ROOT_PASSWORD: root
     healthcheck:
-      test: "/usr/bin/mysql --user=taskbook --password=taskbook --execute \"SHOW DATABASES;\""
+      test: ["CMD", "/usr/bin/mysql", "--user=taskbook", "--password=taskbook", "-e", "SHOW DATABASES;"]
       interval: 30s
       timeout: 5s
       retries: 3
