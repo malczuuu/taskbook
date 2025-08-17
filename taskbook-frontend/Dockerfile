@@ -2,11 +2,14 @@ FROM node:24.4.1-slim AS builder
 
 WORKDIR /builder
 
-ARG APP_VERSION=0.0.0
+ARG APP_VERSION
 
 COPY . ./
-RUN npm install && npm version ${APP_VERSION} --no-git-tag-version && npm run build
-
+RUN npm install && \
+    if [ -n "$APP_VERSION" ]; then \
+        npm version "$APP_VERSION" --no-git-tag-version; \
+    fi && \
+    npm run build
 
 FROM nginx:1.29.0-alpine
 
