@@ -8,19 +8,22 @@ services:
       MYSQL_DATABASE: taskbook
       MYSQL_ROOT_PASSWORD: root
     healthcheck:
-      test: ["CMD", "/usr/bin/mysql", "--user=taskbook", "--password=taskbook", "-e", "SHOW DATABASES;"]
+      test: [ "CMD", "mariadb", "-u", "taskbook", "-ptaskbook", "-e", "SHOW DATABASES;" ]
       interval: 30s
       timeout: 5s
       retries: 3
       start_period: 10s
     volumes:
       - ./database.schema.sql:/docker-entrypoint-initdb.d/database.schema.sql:ro
-    command: --character-set-server=utf8 --collation-server=utf8_bin --max-allowed-packet=67108864
+    command:
+      - --character-set-server=utf8
+      - --collation-server=utf8_bin
+      - --max-allowed-packet=67108864
 
   taskbook-backend:
     image: malczuuu/taskbook-backend:latest
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:80/actuator/health"]
+      test: [ "CMD", "wget", "--spider", "--quiet", "http://localhost:80/actuator/health" ]
       interval: 30s
       timeout: 5s
       retries: 3
@@ -38,19 +41,19 @@ services:
   taskbook-frontend:
     image: malczuuu/taskbook-frontend:latest
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      test: [ "CMD", "curl", "-f", "http://localhost:80" ]
       interval: 30s
       timeout: 5s
       retries: 3
       start_period: 10s
     depends_on:
       taskbook-backend:
-        condition: service_healthy
+        condition: service_started
 
   gateway:
     image: nginx:1.29.0-alpine
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      test: [ "CMD", "curl", "-f", "http://localhost:80" ]
       interval: 30s
       timeout: 5s
       retries: 3
@@ -61,6 +64,6 @@ services:
       - "127.0.0.1:26162:80"
     depends_on:
       taskbook-backend:
-        condition: service_healthy
+        condition: service_started
       taskbook-frontend:
-        condition: service_healthy
+        condition: service_started
