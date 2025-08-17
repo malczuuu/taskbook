@@ -2,13 +2,13 @@ name: Node.js CI
 
 on:
   push:
-    branches: ['main']
+    branches: [ "main" ]
     paths:
-      - 'taskbook-frontend/**'
+      - "taskbook-frontend/**"
   pull_request:
-    branches: ['main']
+    branches: [ "main" ]
     paths:
-      - 'taskbook-frontend/**'
+      - "taskbook-frontend/**"
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20.x, 22.x, 24.x]
+        node-version: [ 20.x, 22.x, 24.x ]
 
     steps:
       - uses: actions/checkout@v4
@@ -29,8 +29,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-          cache-dependency-path: 'taskbook-frontend/package-lock.json'
+          cache: "npm"
+          cache-dependency-path: "taskbook-frontend/package-lock.json"
 
       - run: npm ci
 

@@ -4,11 +4,11 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'taskbook-backend/**'
+      - "taskbook-backend/**"
   pull_request:
     branches: [ "main" ]
     paths:
-      - 'taskbook-backend/**'
+      - "taskbook-backend/**"
 
 jobs:
   build:

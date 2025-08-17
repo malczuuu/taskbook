@@ -2,19 +2,14 @@ name: Build & Push Docker Images
 
 on:
   push:
-    tags:
-      - "*"
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    tags: [ "*" ]
+
 jobs:
   docker:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        service: [taskbook-backend, taskbook-frontend]
+        service: [ taskbook-backend, taskbook-frontend ]
     steps:
       - name: Checkout
         uses: actions/checkout@v5
