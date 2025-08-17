@@ -16,8 +16,8 @@ versioning {
  * Conditional approach to versioning. If `-Pversion=...` is specified on the command line, it will be used as the
  * version. Otherwise, the version is derived from the git tag and build number.
  */
-if (project.hasProperty('version')) {
-    version = project.property('version')
+if (project.hasProperty("version")) {
+    version = project.property("version")
 } else {
     def base = versioning.info.tag ?: "${versioning.info.lastTag}-${versioning.info.build}"
     version = base + (versioning.info.dirty ? "-dirty" : "")
