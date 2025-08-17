@@ -36,6 +36,8 @@ public class WebSecurityConfiguration {
             auth ->
                 auth.requestMatchers(antMatcher("/api/login"))
                     .permitAll()
+                    .requestMatchers(antMatcher("/actuator/**"))
+                    .permitAll()
                     .anyRequest()
                     .hasRole("USER"))
         .sessionManagement(x -> x.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

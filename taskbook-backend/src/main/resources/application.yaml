@@ -3,6 +3,15 @@ server:
   error:
     path: /error
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+
 spring:
   main:
     banner-mode: off
@@ -13,7 +22,7 @@ spring:
     driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
       use-new-id-generator-mappings: true
     database-platform: org.hibernate.dialect.MySQLDialect
   jackson:
