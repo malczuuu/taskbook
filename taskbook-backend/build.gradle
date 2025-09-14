@@ -12,7 +12,7 @@ group = "io.github.malczuuu"
  * version. Otherwise, the version is derived from the git tag and build number.
  */
 if (version == null || version == "unspecified") {
-    version = Versioning.getVersion(new File(rootProject.rootDir, ".."))
+    version = Versioning.getSnapshotVersion(new File(rootProject.rootDir, ".."))
 }
 
 java {
@@ -75,7 +75,7 @@ dependencies {
 
 tasks.register("printVersion") {
     doLast {
-        println "Project version: ${Versioning.getVersion(new File(rootProject.rootDir, ".."))}"
+        println "Project version: ${version}"
     }
 }
 
