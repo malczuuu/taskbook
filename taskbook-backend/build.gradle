@@ -1,26 +1,18 @@
 plugins {
-    id "java"
-    id "org.springframework.boot" version "3.5.3"
-    id "io.spring.dependency-management" version "1.1.7"
-    id "com.diffplug.spotless" version "7.1.0"
-    id "net.nemerosa.versioning" version "3.1.0"
+    id("java")
+    id("org.springframework.boot") version "3.5.5"
+    id("io.spring.dependency-management") version "1.1.7"
+    id("com.diffplug.spotless") version "7.2.1"
 }
 
 group = "io.github.malczuuu"
-
-versioning {
-    gitRepoRootDir = ".."
-}
 
 /**
  * Conditional approach to versioning. If `-Pversion=...` is specified on the command line, it will be used as the
  * version. Otherwise, the version is derived from the git tag and build number.
  */
-if (project.hasProperty("version")) {
-    version = project.property("version")
-} else {
-    def base = versioning.info.tag ?: "${versioning.info.lastTag}-${versioning.info.build}"
-    version = base + (versioning.info.dirty ? "-dirty" : "")
+if (version == null || version == "unspecified") {
+    version = Versioning.getVersion(new File(rootProject.rootDir, ".."))
 }
 
 java {
@@ -55,7 +47,7 @@ spotless {
 
 repositories {
     mavenCentral()
-    maven { url "https://jitpack.io/" }
+    maven { url = "https://jitpack.io/" }
 }
 
 dependencies {
@@ -79,6 +71,12 @@ dependencies {
     implementation("com.github.malczuuu:problem4j-spring-web:3.1.0-rc4")
 
     testRuntimeOnly("com.h2database:h2:2.3.232")
+}
+
+tasks.register("printVersion") {
+    doLast {
+        println "Project version: ${Versioning.getVersion(new File(rootProject.rootDir, ".."))}"
+    }
 }
 
 /**
