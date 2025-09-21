@@ -11,3 +11,27 @@ updates:
     ignore:
       - dependency-name: "*"
         update-types: [ "version-update:semver-minor", "version-update:semver-major" ]
+    groups:
+      backend:
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+
+  - package-ecosystem: "npm"
+    directory: "/taskbook-frontend"
+    schedule:
+      interval: "cron"
+      cronjob: "0 0 * * 0"  # Every Sunday at midnight UTC
+    open-pull-requests-limit: 5
+    allow:
+      - dependency-type: "all"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-minor", "version-update:semver-major"]
+    groups:
+      frontend:
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
