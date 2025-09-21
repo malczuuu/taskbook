@@ -11,6 +11,14 @@ updates:
     ignore:
       - dependency-name: "*"
         update-types: [ "version-update:semver-minor", "version-update:semver-major" ]
+    groups:
+      backend-framework:
+        patterns:
+          - "org.springframework.boot:*"
+          - "org.springframework:*"
+          - "io.spring.dependency-management:*"
+        update-types:
+          - "patch"
 
   - package-ecosystem: "npm"
     directory: "/taskbook-frontend"
@@ -23,3 +31,14 @@ updates:
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-minor", "version-update:semver-major"]
+    groups:
+      frontend-framework:
+        patterns:
+          - "@angular/*"
+          - "@types/*"
+          - "rxjs"
+          - "zone.js"
+          - "tslib"
+          - "core-js"
+        update-types:
+          - "patch"
