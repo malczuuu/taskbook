@@ -5,9 +5,21 @@ updates:
     schedule:
       interval: "cron"
       cronjob: "0 0 * * 0"  # Every Sunday at midnight UTC
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 10
     allow:
       - dependency-type: "direct"
     ignore:
       - dependency-name: "*"
         update-types: [ "version-update:semver-minor", "version-update:semver-major" ]
+
+  - package-ecosystem: "npm"
+    directory: "/taskbook-frontend"
+    schedule:
+      interval: "cron"
+      cronjob: "0 0 * * 0"  # Every Sunday at midnight UTC
+    open-pull-requests-limit: 10
+    allow:
+      - dependency-type: "direct"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-minor", "version-update:semver-major"]
