@@ -2,7 +2,7 @@ package io.github.malczuuu.taskbook.rest.support;
 
 import io.github.malczuuu.problem4j.core.Problem;
 import io.github.malczuuu.problem4j.core.ProblemBuilder;
-import io.github.malczuuu.problem4j.spring.web.Violation;
+import io.github.malczuuu.problem4j.spring.web.model.Violation;
 import jakarta.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.stream.Collectors;
