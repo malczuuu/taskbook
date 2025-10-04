@@ -79,9 +79,15 @@ spotless {
     }
 }
 
+/**
+ * Usage:
+ *   ./gradlew printVersion
+ */
 tasks.register("printVersion") {
+    description = "Prints the current project version to the console"
+    group = "help"
     doLast {
-        println("Project version: $version")
+        println("${project.name} version: ${project.version}")
     }
 }
 
