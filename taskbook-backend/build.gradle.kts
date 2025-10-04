@@ -1,4 +1,5 @@
 import com.diffplug.spotless.LineEnding
+import java.io.File
 
 plugins {
     id("java")
@@ -15,7 +16,7 @@ group = "io.github.malczuuu.taskbook"
  */
 version =
     if (version == "unspecified")
-        getSnapshotVersion(rootProject.rootDir)
+        getSnapshotVersion(File(rootProject.rootDir, ".."))
     else
         version
 
