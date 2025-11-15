@@ -3,9 +3,8 @@ import java.io.File
 
 plugins {
     id("java")
-    id("org.springframework.boot").version("3.5.6")
-    id("io.spring.dependency-management").version("1.1.7")
-    id("com.diffplug.spotless").version("8.0.0")
+    alias(libs.plugins.spotless)
+    alias(libs.plugins.spring.boot)
 }
 
 group = "io.github.malczuuu.taskbook"
@@ -29,26 +28,27 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation(platform(libs.spring.boot.dependencies))
+    implementation(libs.spring.boot.starter.actuator)
+    implementation(libs.spring.boot.starter.data.jpa)
+    implementation(libs.spring.boot.starter.security)
+    implementation(libs.spring.boot.starter.validation)
+    implementation(libs.spring.boot.starter.web)
 
-    implementation("io.micrometer:micrometer-registry-prometheus")
+    implementation(libs.micrometer.registry.prometheus)
 
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework.security:spring-security-test")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation(libs.spring.boot.starter.test)
+    testImplementation(libs.spring.security.test)
+    testRuntimeOnly(libs.junit.platform.launcher)
 
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+    annotationProcessor(libs.spring.boot.configuration.processor)
 
-    runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
+    runtimeOnly(libs.mariadb.java.client)
 
-    implementation("com.auth0:java-jwt:4.5.0")
-    implementation("io.github.malczuuu.problem4j:problem4j-spring-webmvc:1.1.0")
+    implementation(libs.java.jwt)
+    implementation(libs.problem4j.spring.webmvc)
 
-    testRuntimeOnly("com.h2database:h2:2.4.240")
+    testRuntimeOnly(libs.h2)
 }
 spotless {
     format("misc") {

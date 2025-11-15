@@ -1,0 +1,30 @@
+[versions]
+spotless = "8.0.0"
+spring-boot = "3.5.6"
+java-jwt = "4.5.0"
+problem4j-spring = "1.1.0"
+h2 = "2.4.240"
+
+[plugins]
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+
+[libraries]
+# dependencies managed by spring-boot-dependencies
+spring-boot-dependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
+spring-boot-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor", version.ref = "spring-boot" }
+spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
+spring-boot-starter-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
+spring-boot-starter-security = { module = "org.springframework.boot:spring-boot-starter-security" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+spring-boot-starter-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
+spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+spring-security-test = { module = "org.springframework.security:spring-security-test" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+mariadb-java-client = { module = "org.mariadb.jdbc:mariadb-java-client" }
+micrometer-registry-prometheus = { module = "io.micrometer:micrometer-registry-prometheus" }
+
+# dependencies versioned directly
+java-jwt = { module = "com.auth0:java-jwt", version.ref = "java-jwt" }
+problem4j-spring-webmvc = { module = "io.github.malczuuu.problem4j:problem4j-spring-webmvc", version.ref = "problem4j-spring" }
+h2 = { module = "com.h2database:h2", version.ref = "h2" }
