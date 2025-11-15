@@ -3,8 +3,8 @@ updates:
   - package-ecosystem: "gradle"
     directory: "/taskbook-backend"
     schedule:
-      interval: "cron"
-      cronjob: "0 0 * * 0"  # Every Sunday at midnight UTC
+      interval: "quarterly"
+    target-branch: main
     open-pull-requests-limit: 10
     allow:
       - dependency-type: "direct"
@@ -16,8 +16,8 @@ updates:
   - package-ecosystem: "npm"
     directory: "/taskbook-frontend"
     schedule:
-      interval: "cron"
-      cronjob: "0 0 * * 0"  # Every Sunday at midnight UTC
+      interval: "quarterly"
+    target-branch: main
     open-pull-requests-limit: 10
     allow:
       - dependency-type: "direct"
@@ -34,3 +34,10 @@ updates:
           - "zone.js"
           - "tslib"
           - "core-js"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "quarterly"
+    target-branch: main
+    open-pull-requests-limit: 10
