@@ -10,15 +10,8 @@ updates:
       - dependency-type: "direct"
     ignore:
       - dependency-name: "*"
-        update-types: [ "version-update:semver-minor", "version-update:semver-major" ]
-    groups:
-      spring:
-        patterns:
-          - "org.springframework.boot:*"
-          - "org.springframework:*"
-          - "io.spring.dependency-management:*"
         update-types:
-          - "patch"
+          - "version-update:semver-major"
 
   - package-ecosystem: "npm"
     directory: "/taskbook-frontend"
@@ -30,7 +23,8 @@ updates:
       - dependency-type: "direct"
     ignore:
       - dependency-name: "*"
-        update-types: ["version-update:semver-minor", "version-update:semver-major"]
+        update-types:
+          - "version-update:semver-major"
     groups:
       angular:
         patterns:
@@ -40,5 +34,3 @@ updates:
           - "zone.js"
           - "tslib"
           - "core-js"
-        update-types:
-          - "patch"
