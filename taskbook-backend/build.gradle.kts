@@ -50,7 +50,7 @@ dependencies {
     implementation("com.auth0:java-jwt:4.5.0")
     implementation("io.github.malczuuu.problem4j:problem4j-spring-webmvc:1.0.3")
 
-    testRuntimeOnly("com.h2database:h2:2.3.232")
+    testRuntimeOnly("com.h2database:h2:2.4.240")
 }
 spotless {
     format("misc") {
