@@ -27,3 +27,5 @@ jobs:
         uses: gradle/actions/dependency-submission@v5
         with:
           build-root-directory: taskbook-backend
+          dependency-graph-exclude-projects: ":buildSrc"
+          dependency-graph-exclude-configurations: ".*[Tt]est(Compile|Runtime)Classpath"
