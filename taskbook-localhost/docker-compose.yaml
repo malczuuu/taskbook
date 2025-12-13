@@ -21,7 +21,7 @@ services:
       - --max-allowed-packet=67108864
 
   phpmyadmin:
-    image: phpmyadmin:5.2.2
+    image: phpmyadmin:5.2.3
     environment:
       PMA_HOST: mariadb
       PMA_PORT: 3306
