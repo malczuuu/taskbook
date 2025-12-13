@@ -9,6 +9,8 @@ on:
     branches: [ "main" ]
     paths:
       - "taskbook-frontend/**"
+  schedule:
+    - cron: "0 0 * * 0"  # Every Sunday at midnight UTC
 
 jobs:
   build:

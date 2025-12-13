@@ -9,6 +9,8 @@ on:
     branches: [ "main" ]
     paths:
       - "taskbook-backend/**"
+  schedule:
+    - cron: "0 0 * * 0"  # Every Sunday at midnight UTC
 
 jobs:
   build:
@@ -32,4 +34,6 @@ jobs:
 
       - name: Build with Gradle Wrapper
         working-directory: taskbook-backend
+        env:
+          GRADLE_OPTS: "-Dorg.gradle.configuration-cache=false -Dorg.gradle.daemon=false -Dorg.gradle.parallel=false"
         run: ./gradlew build
