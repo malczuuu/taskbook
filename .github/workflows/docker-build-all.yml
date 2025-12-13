@@ -15,7 +15,7 @@ jobs:
           - "taskbook-frontend"
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Log in to Docker Hub
         if: startsWith(github.ref, 'refs/tags/') # Only login when we intend to push (i.e. tag builds)
