@@ -31,9 +31,7 @@ updates:
           - "@angular/*"
           - "@types/*"
           - "rxjs"
-          - "zone.js"
           - "tslib"
-          - "core-js"
 
   - package-ecosystem: "github-actions"
     directory: "/"
