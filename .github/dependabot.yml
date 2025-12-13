@@ -39,3 +39,17 @@ updates:
       interval: "quarterly"
     target-branch: main
     open-pull-requests-limit: 10
+
+  - package-ecosystem: "docker-compose"
+    directory: "/taskbook-compose"
+    schedule:
+      interval: "quarterly"
+    target-branch: main
+    open-pull-requests-limit: 5
+
+  - package-ecosystem: "docker-compose"
+    directory: "/taskbook-localhost"
+    schedule:
+      interval: "quarterly"
+    target-branch: main
+    open-pull-requests-limit: 5
