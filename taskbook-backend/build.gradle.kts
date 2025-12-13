@@ -1,4 +1,5 @@
 import com.diffplug.spotless.LineEnding
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import java.io.File
 
 plugins {
@@ -9,15 +10,11 @@ plugins {
 
 group = "io.github.malczuuu.taskbook"
 
-/**
- * In order to avoid hardcoding snapshot versions, we derive the version from the current Git commit hash. For CI/CD add
- * -Pversion={releaseVersion} parameter to match Git tag.
- */
-version =
-    if (version == "unspecified")
-        getSnapshotVersion(File(rootProject.rootDir, ".."))
-    else
-        version
+// In order to avoid hardcoding snapshot versions, version is derived from the current Git commit hash. For CI/CD add
+// -Pversion={releaseVersion} parameter to match Git tag.
+if (version == Project.DEFAULT_VERSION) {
+    version = getSnapshotVersion(File(rootProject.rootDir, ".."))
+}
 
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(21)
@@ -50,9 +47,43 @@ dependencies {
 
     testRuntimeOnly(libs.h2)
 }
+
 spotless {
+    java {
+        target("**/src/**/*.java")
+
+        googleJavaFormat("1.28.0")
+        forbidWildcardImports()
+        endWithNewline()
+        lineEndings = LineEnding.UNIX
+    }
+
+    sql {
+        target("**/src/main/resources/**/*.sql")
+
+        dbeaver()
+        endWithNewline()
+        lineEndings = LineEnding.UNIX
+    }
+
+    kotlin {
+        target("**/src/**/*.kt")
+
+        ktfmt("0.59").metaStyle()
+        endWithNewline()
+        lineEndings = LineEnding.UNIX
+    }
+
+    kotlinGradle {
+        target("**/*.gradle.kts")
+
+        ktlint("1.8.0").editorConfigOverride(mapOf("max_line_length" to "120"))
+        endWithNewline()
+        lineEndings = LineEnding.UNIX
+    }
+
     format("misc") {
-        target("**/*.gradle.kts", "**/.gitattributes", "**/.gitignore")
+        target("**/.gitattributes", "**/.gitignore")
 
         trimTrailingWhitespace()
         leadingTabsToSpaces(4)
@@ -60,27 +91,18 @@ spotless {
         lineEndings = LineEnding.UNIX
     }
 
-    format ("yaml") {
-        target ("**/*.yml", "**/*.yaml")
+    format("yaml") {
+        target("**/src/**/*.yml", "**/src/**/*.yaml")
 
         trimTrailingWhitespace()
         leadingTabsToSpaces(2)
         endWithNewline()
-    }
-
-    java {
-        target("src/**/*.java")
-        forbidWildcardImports()
-
-        googleJavaFormat("1.28.0")
         lineEndings = LineEnding.UNIX
     }
 }
 
-/**
- * Usage:
- *   ./gradlew printVersion
- */
+// Usage:
+//   ./gradlew printVersion
 tasks.register("printVersion") {
     description = "Prints the current project version to the console"
     group = "help"
@@ -89,13 +111,37 @@ tasks.register("printVersion") {
     }
 }
 
-/**
- * There's no need for a plain JAR.
- */
-tasks.named<Jar>("jar") {
-    enabled = false
+tasks.withType<Jar>().configureEach {
+    if (name != "bootJar") {
+        enabled = false
+    }
+
+    manifest {
+        attributes(
+            "Implementation-Title" to project.name,
+            "Implementation-Version" to project.version,
+            "Build-Jdk-Spec" to java.toolchain.languageVersion.get().toString(),
+            "Created-By" to "Gradle ${gradle.gradleVersion}",
+        )
+    }
 }
 
 tasks.withType<Test>().configureEach {
-    useJUnitPlatform()
+    useJUnitPlatform {
+        if (project.findProperty("containers.enabled")?.toString() == "false") {
+            excludeTags("testcontainers")
+        }
+    }
+
+    testLogging {
+        events("passed", "skipped", "failed", "standardOut", "standardError")
+        exceptionFormat = TestExceptionFormat.SHORT
+        showStandardStreams = true
+    }
+
+    // For resolving warnings from mockito.
+    jvmArgs("-XX:+EnableDynamicAgentLoading")
+
+    systemProperty("user.language", "en")
+    systemProperty("user.country", "US")
 }
