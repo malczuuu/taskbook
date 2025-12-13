@@ -2,7 +2,7 @@
 spotless = "8.0.0"
 spring-boot = "3.5.7"
 java-jwt = "4.5.0"
-problem4j-spring = "1.1.0"
+problem4j-spring = "1.1.6"
 h2 = "2.4.240"
 
 [plugins]
