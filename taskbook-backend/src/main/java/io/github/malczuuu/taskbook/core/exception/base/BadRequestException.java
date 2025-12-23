@@ -1,9 +1,9 @@
 package io.github.malczuuu.taskbook.core.exception.base;
 
-import io.github.malczuuu.problem4j.core.Problem;
-import io.github.malczuuu.problem4j.core.Problem.Extension;
-import io.github.malczuuu.problem4j.core.ProblemBuilder;
-import io.github.malczuuu.problem4j.core.ProblemException;
+import io.github.problem4j.core.Problem;
+import io.github.problem4j.core.Problem.Extension;
+import io.github.problem4j.core.ProblemBuilder;
+import io.github.problem4j.core.ProblemException;
 import org.springframework.http.HttpStatus;
 
 public abstract class BadRequestException extends ProblemException {

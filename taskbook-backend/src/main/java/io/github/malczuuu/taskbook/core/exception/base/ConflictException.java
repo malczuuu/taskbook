@@ -1,7 +1,7 @@
 package io.github.malczuuu.taskbook.core.exception.base;
 
-import io.github.malczuuu.problem4j.core.Problem;
-import io.github.malczuuu.problem4j.core.ProblemException;
+import io.github.problem4j.core.Problem;
+import io.github.problem4j.core.ProblemException;
 import org.springframework.http.HttpStatus;
 
 public abstract class ConflictException extends ProblemException {

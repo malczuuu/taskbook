@@ -1,6 +1,5 @@
 package io.github.malczuuu.taskbook.core.impl;
 
-import io.github.malczuuu.problem4j.core.Problem;
 import io.github.malczuuu.taskbook.core.entity.BoardEntity;
 import io.github.malczuuu.taskbook.core.exception.BoardGoneException;
 import io.github.malczuuu.taskbook.core.exception.BoardNotFoundException;
@@ -9,6 +8,7 @@ import io.github.malczuuu.taskbook.core.repository.BoardRepository;
 import io.github.malczuuu.taskbook.core.service.BoardService;
 import io.github.malczuuu.taskbook.model.BoardModel;
 import io.github.malczuuu.taskbook.model.BoardUpdateModel;
+import io.github.problem4j.core.Problem;
 import java.time.Clock;
 import java.time.Instant;
 import org.hibernate.exception.ConstraintViolationException;

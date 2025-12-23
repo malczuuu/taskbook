@@ -2,7 +2,7 @@
 spotless = "8.1.0"
 spring-boot = "3.5.8"
 java-jwt = "4.5.0"
-problem4j-spring = "1.1.6"
+problem4j-spring = "1.2.0-RC1"
 h2 = "2.4.240"
 
 [plugins]
@@ -26,5 +26,5 @@ micrometer-registry-prometheus = { module = "io.micrometer:micrometer-registry-p
 
 # dependencies versioned directly
 java-jwt = { module = "com.auth0:java-jwt", version.ref = "java-jwt" }
-problem4j-spring-webmvc = { module = "io.github.malczuuu.problem4j:problem4j-spring-webmvc", version.ref = "problem4j-spring" }
+problem4j-spring-webmvc = { module = "io.github.problem4j:problem4j-spring-webmvc", version.ref = "problem4j-spring" }
 h2 = { module = "com.h2database:h2", version.ref = "h2" }

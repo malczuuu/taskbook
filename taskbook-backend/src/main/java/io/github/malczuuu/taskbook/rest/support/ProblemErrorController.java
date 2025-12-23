@@ -1,6 +1,6 @@
 package io.github.malczuuu.taskbook.rest.support;
 
-import io.github.malczuuu.problem4j.core.Problem;
+import io.github.problem4j.core.Problem;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.boot.web.servlet.error.ErrorController;

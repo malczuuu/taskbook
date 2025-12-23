@@ -1,6 +1,6 @@
 package io.github.malczuuu.taskbook.security;
 
-import io.github.malczuuu.problem4j.core.Problem;
+import io.github.problem4j.core.Problem;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;

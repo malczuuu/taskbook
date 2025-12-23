@@ -1,7 +1,7 @@
 package io.github.malczuuu.taskbook.core.exception;
 
-import io.github.malczuuu.problem4j.core.Problem;
 import io.github.malczuuu.taskbook.core.exception.base.GoneException;
+import io.github.problem4j.core.Problem;
 
 public class IssueGoneException extends GoneException {
 

@@ -1,6 +1,5 @@
 package io.github.malczuuu.taskbook.core.impl;
 
-import io.github.malczuuu.problem4j.core.Problem;
 import io.github.malczuuu.taskbook.core.entity.BoardEntity;
 import io.github.malczuuu.taskbook.core.entity.CommentEntity;
 import io.github.malczuuu.taskbook.core.entity.IssueEntity;
@@ -19,6 +18,7 @@ import io.github.malczuuu.taskbook.core.service.CommentService;
 import io.github.malczuuu.taskbook.model.CommentModel;
 import io.github.malczuuu.taskbook.model.NewCommentModel;
 import io.github.malczuuu.taskbook.model.UserModel;
+import io.github.problem4j.core.Problem;
 import java.time.Clock;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

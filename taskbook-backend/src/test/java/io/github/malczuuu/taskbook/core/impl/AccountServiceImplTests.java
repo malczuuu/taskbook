@@ -6,7 +6,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import io.github.malczuuu.problem4j.core.Problem;
 import io.github.malczuuu.taskbook.core.entity.Role;
 import io.github.malczuuu.taskbook.core.entity.UserEntity;
 import io.github.malczuuu.taskbook.core.exception.UserDoesNotExistException;
@@ -15,6 +14,7 @@ import io.github.malczuuu.taskbook.core.service.AccountService;
 import io.github.malczuuu.taskbook.model.AccountModel;
 import io.github.malczuuu.taskbook.model.AccountUpdateModel;
 import io.github.malczuuu.taskbook.model.PasswordUpdateModel;
+import io.github.problem4j.core.Problem;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

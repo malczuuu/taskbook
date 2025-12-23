@@ -1,6 +1,5 @@
 package io.github.malczuuu.taskbook.core.impl;
 
-import io.github.malczuuu.problem4j.core.Problem;
 import io.github.malczuuu.taskbook.core.entity.BoardEntity;
 import io.github.malczuuu.taskbook.core.entity.IssueEntity;
 import io.github.malczuuu.taskbook.core.entity.UserEntity;
@@ -18,6 +17,7 @@ import io.github.malczuuu.taskbook.model.IssueRawModel;
 import io.github.malczuuu.taskbook.model.IssueUpdateModel;
 import io.github.malczuuu.taskbook.model.NewIssueModel;
 import io.github.malczuuu.taskbook.model.UserModel;
+import io.github.problem4j.core.Problem;
 import java.time.Clock;
 import java.time.Instant;
 import org.springframework.data.domain.Page;
