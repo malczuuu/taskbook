@@ -27,11 +27,7 @@ Project uses GitHub Actions to automate builds, tests and release (to Docker Hub
 
 - [`taskbook-backend-build.yml`](.github/workflows/taskbook-backend-build.yml) – Build and test `taskbook-backend`
   Gradle project on `main` branch and pull requests.
-- [`taskbook-backend-build-weekly.yml`](.github/workflows/taskbook-backend-build-weekly.yml) – Build and test
-  `taskbook-backend` Gradle project weekly on `main` branch.
 - [`taskbook-frontend-build.yml`](.github/workflows/taskbook-frontend-build.yml) – Build and test `taskbook-frontend`
   Node.js project on `main` branch and pull requests.
-- [`taskbook-frontend-build-weekly.yml`](.github/workflows/taskbook-frontend-build-weekly.yml) – Build and test
-  `taskbook-frontend` Node.js project weekly on `main` branch.
 - [`docker-build-all.yml`](.github/workflows/docker-build-all.yml) – Build and push Docker images for both services to
   Docker Hub on tags.
