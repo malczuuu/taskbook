@@ -25,6 +25,8 @@ EXPOSE 80
 
 COPY --from=builder /home/gradle/build/libs/*.jar /taskbook/taskbook.jar
 
+ENV SPRING_PROFILES_ACTIVE="production"
+
 ENV JAVA_OPTS_DEFAULT="\
 -XX:+UseContainerSupport \
 -XX:MaxRAMPercentage=75.0 \
