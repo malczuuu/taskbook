@@ -1,5 +1,5 @@
 [versions]
-spotless = "8.1.0"
+spotless = "8.2.0"
 spring-boot = "4.0.2"
 java-jwt = "4.5.0"
 problem4j-spring = "2.1.1"
