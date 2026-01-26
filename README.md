@@ -25,9 +25,11 @@ To set up development environment, use the [`taskbook-localhost`](./taskbook-loc
 Project uses GitHub Actions to automate builds, tests and release (to Docker Hub) for both `taskbook-backend` and
 `taskbook-frontend` projects.
 
-- [`taskbook-backend-build.yml`](.github/workflows/taskbook-backend-build.yml) – Build and test `taskbook-backend`
-  Gradle project on `main` branch and pull requests.
-- [`taskbook-frontend-build.yml`](.github/workflows/taskbook-frontend-build.yml) – Build and test `taskbook-frontend`
-  Node.js project on `main` branch and pull requests.
-- [`docker-build-all.yml`](.github/workflows/docker-build-all.yml) – Build and push Docker images for both services to
+- [`docker-build-all.yml`](.github/workflows/docker-build-all.yml) - Build and push Docker images for both services to
   Docker Hub on tags.
+- [`taskbook-backend-build.yml`](.github/workflows/taskbook-backend-build.yml) - Build and test `taskbook-backend`
+  Gradle project on `main` branch and pull requests.
+- [`taskbook-backend-dependency-submission.yml`](.github/workflows/taskbook-backend-dependency-submission.yml) - 
+  Generate and submit dependency graph for `taskbook-backend` Gradle project on `main` branch.
+- [`taskbook-frontend-build.yml`](.github/workflows/taskbook-frontend-build.yml) - Build and test `taskbook-frontend`
+  Node.js project on `main` branch and pull requests.
