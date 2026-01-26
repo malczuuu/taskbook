@@ -1,6 +1,5 @@
 import com.diffplug.spotless.LineEnding
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import java.io.File
 
 plugins {
     id("java")
@@ -10,11 +9,9 @@ plugins {
 
 group = "io.github.malczuuu.taskbook"
 
-// In order to avoid hardcoding snapshot versions, version is derived from the current Git commit hash. For CI/CD add
-// -Pversion={releaseVersion} parameter to match Git tag.
-if (version == Project.DEFAULT_VERSION) {
-    version = getSnapshotVersion(File(rootProject.rootDir, ".."))
-}
+//
+// Not assigning version as it is assigned in CI/CD using -Pversion=X.Y.Z parameter.
+//
 
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(21)
@@ -101,28 +98,46 @@ spotless {
     }
 }
 
+// Utility to clean up old jars as they can clutter.
+// Usage:
+//   ./gradlew cleanLibs
+tasks.register<Delete>("cleanLibs") {
+    description = "Deletes build/libs directory."
+    group = "build"
+
+    delete(layout.buildDirectory.dir("libs"))
+}
+
 // Usage:
 //   ./gradlew printVersion
-tasks.register("printVersion") {
-    description = "Prints the current project version to the console"
+tasks.register<DefaultTask>("printVersion") {
+    description = "Prints the current project version to the console."
     group = "help"
+
+    val projectName = project.name
+    val projectVersion = project.version.toString()
+
     doLast {
-        println("${project.name} version: ${project.version}")
+        println("$projectName version: $projectVersion")
     }
 }
 
+tasks.withType<JavaCompile>().configureEach {
+    options.compilerArgs.add("-parameters")
+}
+
 tasks.withType<Jar>().configureEach {
+    dependsOn("cleanLibs")
+
     if (name != "bootJar") {
         enabled = false
     }
 
     manifest {
-        attributes(
-            "Implementation-Title" to project.name,
-            "Implementation-Version" to project.version,
-            "Build-Jdk-Spec" to java.toolchain.languageVersion.get().toString(),
-            "Created-By" to "Gradle ${gradle.gradleVersion}",
-        )
+        attributes["Implementation-Title"] = project.name
+        attributes["Implementation-Version"] = project.version
+        attributes["Build-Jdk-Spec"] = java.toolchain.languageVersion.get().toString()
+        attributes["Created-By"] = "Gradle ${gradle.gradleVersion}"
     }
 }
 

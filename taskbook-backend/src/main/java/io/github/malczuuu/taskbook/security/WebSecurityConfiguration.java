@@ -1,7 +1,5 @@
 package io.github.malczuuu.taskbook.security;
 
-import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
-
 import io.github.malczuuu.taskbook.security.jwt.JwtAuthorizationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,9 +32,9 @@ public class WebSecurityConfiguration {
       HttpSecurity http, JwtAuthorizationFilter jwtAuthorizationFilter) throws Exception {
     return http.authorizeHttpRequests(
             auth ->
-                auth.requestMatchers(antMatcher("/api/login"))
+                auth.requestMatchers("/api/login")
                     .permitAll()
-                    .requestMatchers(antMatcher("/actuator/**"))
+                    .requestMatchers("/actuator/**")
                     .permitAll()
                     .anyRequest()
                     .hasRole("USER"))

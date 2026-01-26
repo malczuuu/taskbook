@@ -36,6 +36,7 @@ class AccountServiceImplTests {
 
   private AccountService accountService;
 
+  @SuppressWarnings("deprecation")
   @BeforeEach
   void beforeEach() {
     userRepository = mock(UserRepository.class);
