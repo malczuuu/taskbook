@@ -6,12 +6,12 @@
 *.class          binary
 
 # --- Gradle files ---
-*.gradle         text
-*.gradle.kts     text
-gradlew          text eol=lf
-gradlew.bat      text eol=crlf
-gradle.properties text
-settings.gradle   text
+*.gradle            text
+*.gradle.kts        text
+gradlew             text eol=lf
+gradlew.bat         text eol=crlf
+gradle.properties   text
+settings.gradle     text
 settings.gradle.kts text
 
 # --- Frontend source files ---
