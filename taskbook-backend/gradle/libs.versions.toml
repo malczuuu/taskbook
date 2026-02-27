@@ -1,6 +1,6 @@
 [versions]
 spotless = "8.2.1"
-spring-boot = "4.0.2"
+spring-boot = "4.0.3"
 java-jwt = "4.5.1"
 problem4j-spring = "2.2.1"
 h2 = "2.4.240"
